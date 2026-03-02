@@ -56,6 +56,7 @@ int main(void)
         return 2;
     }
 
+    printf("The number: ");
     printing_number(number);
 
     printf("\n");
