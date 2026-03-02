@@ -30,13 +30,15 @@ int main(void)
     float phi_rad; /**< angle in radians */
 
     printf("Enter the length of the base a, b and the angle phi: ");
-    if (scanf("%f %f %f", &side_a, &side_b, &angle_phi) != 3) /**< validation for input correctness */
+    /** validation for input correctness */
+    if (scanf("%f %f %f", &side_a, &side_b, &angle_phi) != 3)
     {
         printf("Incorrect input\n");
         return 1;
     }
 
-    if (side_a <= 0 || side_b <= 0 || angle_phi <= 0 || angle_phi >= 180) /**< validation for mathematical correctness */
+    /** validation for mathematical correctness */
+    if (side_a <= 0 || side_b <= 0 || angle_phi <= 0 || angle_phi >= 180)
     {
         printf("Incorrect mathematical input\n");
         return 2;

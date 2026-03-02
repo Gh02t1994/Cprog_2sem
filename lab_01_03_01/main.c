@@ -25,13 +25,15 @@ int main(void)
     float t_1, t_2, t_total; /**< water temperatures */
 
     printf("Enter the volume and temperature of the first container, and then the second: ");
-    if (scanf("%f %f %f %f", &v_1, &t_1, &v_2, &t_2) != 4) /**< validation for input correctness */
+    /** validation for input correctness */
+    if (scanf("%f %f %f %f", &v_1, &t_1, &v_2, &t_2) != 4)
     {
         printf("Incorrect input\n");
         return 1;
     }
 
-    if (v_1 <= 0 || v_2 <= 0 || t_1 <= 0 || t_2 <= 0) /**< validation for mathematical correctness */
+    /** validation for mathematical correctness */
+    if (v_1 <= 0 || v_2 <= 0 || t_1 <= 0 || t_2 <= 0)
     {
         printf("Incorrect mathematical input\n");
         return 2;

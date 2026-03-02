@@ -47,11 +47,13 @@ int val_of_correct_inp(int arg_scanf, int inp_num)
  */
 void printing_number(int full_number)
 {
-    if (full_number >= 10) /**< move to the higher digits of the number */
+    /** move to the higher digits of the number */
+    if (full_number >= 10)
     {
         printing_number(full_number / 10);
     }
-    printf("%d", full_number % 10); /**< output the low-order digits */
+    /** output the low-order digits */
+    printf("%d", full_number % 10);
 }
 
 /**
@@ -69,7 +71,8 @@ int main(void)
 
     printf("Enter the natural number (>0): ");
     rc = val_of_correct_inp(scanf("%d", &number), number);
-    if (rc != 0) /**< validation */
+    /** validation */
+    if (rc != 0)
     {
         return rc;
     }

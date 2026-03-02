@@ -25,13 +25,15 @@ int main(void)
     int num_apart, floor; /**< the number of apartments and number of floor */
 
     printf("Enter the number of flat: ");
-    if (scanf("%d", &num_of_flat) != 1) /**< validation for input correctness */
+    /** validation for input correctness */
+    if (scanf("%d", &num_of_flat) != 1)
     {
         printf("Incorrect input");
         return 1;
     }
 
-    if (num_of_flat <= 0) /**< validation for mathematical correctness */
+    /** validation for mathematical correctness */
+    if (num_of_flat <= 0)
     {
         printf("Incorrect mathematical input");
         return 2;
