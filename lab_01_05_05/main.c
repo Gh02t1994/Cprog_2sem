@@ -2,7 +2,7 @@
  * @file main.c
  * @author Balyabin Yaroslav (balyabinyav@student.bmstu.ru)
  * @brief Lab 01 05 01
- * @version 0.1
+ * @version 0.2
  * @date 2026-02-01
  * 
  * @copyright Copyright (c) 2026
@@ -10,33 +10,6 @@
  */
 
 #include <stdio.h>
-
-/**
- * @brief input validation
- * 
- * @param arg_scanf - scanf result
- * @param inp_num - the entered number
- * 
- * @return int
- * 0 — successful completion
- * 1 — input error
- * 2 — incorrect mathematical data
- */
-int val_of_correct_inp(int arg_scanf, int inp_num)
-{
-    if (arg_scanf != 1)
-    {
-        printf("Incorrect input");
-        return 1;
-    }
-
-    if (inp_num <= 0)
-    {
-        printf("Incorrect mathematical input");
-        return 2;
-    }
-    return 0;
-}
 
 /**
  * @brief character-by-character printing of a number
@@ -67,17 +40,22 @@ void printing_number(int full_number)
 int main(void)
 {
     int number;
-    int rc; /**< return code */
 
     printf("Enter the natural number (>0): ");
-    rc = val_of_correct_inp(scanf("%d", &number), number);
-    /** validation */
-    if (rc != 0)
+    /** validation for input correctness */
+    if (scanf("%d", &number) != 1)
     {
-        return rc;
+        printf("Incorrect input");
+        return 1;
     }
 
-    printf("The number: ");
+    /** validation for mathematical correctness */
+    if (number <= 0)
+    {
+        printf("Incorrect mathematical input");
+        return 2;
+    }
+
     printing_number(number);
 
     printf("\n");
