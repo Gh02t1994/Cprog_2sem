@@ -72,5 +72,5 @@ int main(void)
     rel_accuracy = abs_accuracy / fabs(f_x); /**< relative accuracy */
 
     printf("The result f_x, s_x, absolute accuracy and relative accuracy: %f %f %f %f", \
-        f_x, s_x, abs_accuracy, rel_accuracy);
+    f_x, s_x, abs_accuracy, rel_accuracy);
 }
