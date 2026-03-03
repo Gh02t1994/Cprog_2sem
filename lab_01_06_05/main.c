@@ -10,8 +10,9 @@
  */
 
 #include <stdio.h>
+#include <math.h>
 
-#define EPS 0.000001
+#define EPS 1e-6
 
 /**
  * @brief calculating the lenght of segment
@@ -26,7 +27,7 @@
  */
 float check_segments(float x_1, float y_1, float x_2, float y_2)
 {
-    float lenght_of_seg = (x_2 - x_1) * (x_2 - x_1) + (y_2 - y_1) * (y_2 - y_1); /**< the length squared */
+    float lenght_of_seg = sqrtf((x_2 - x_1) * (x_2 - x_1) + (y_2 - y_1) * (y_2 - y_1)); /**< the length squared */
 
     return lenght_of_seg;
 }

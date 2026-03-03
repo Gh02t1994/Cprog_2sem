@@ -2,7 +2,7 @@
  * @file main.c
  * @author Balyabin Yaroslav (balyabinyav@student.bmstu.ru)
  * @brief Lab 01 07 05
- * @version 0.1
+ * @version 0.2
  * @date 2026-03-01
  * 
  * @copyright Copyright (c) 2026
@@ -41,7 +41,7 @@ int main(void)
 {
     float abs_accuracy, rel_accuracy, f_x, s_x = 0; /**< absolute accuracy, realtive accuracy, f(x) anf s(x) */
     float x, eps;
-    float cur_term = 1; /**< current term */
+    float cur_term = 1.0f; /**< current term */
     int n = 1;
 
     printf("Enter x (|x| < 1) and epsilon accuracy (0 < eps <= 1): ");
@@ -52,13 +52,13 @@ int main(void)
         return 1;
     }
     /** validation for mathematical correctness */
-    if (eps <= 0 || eps > 1 || fabs(x) >= 1)
+    if (eps <= 0.0f || eps > 1.0f || fabs(x) >= 1.0f)
     {
         printf("Incorrect mathematical input");
         return 2;
     }
 
-    f_x = 1 / sqrt(1 - x * x); /**< f(x) */
+    f_x = 1.0f / sqrtf(1.0f - x * x); /**< f(x) */
 
     /** calculating s(x) with epsilon accuracy */
     while (cur_term >= eps)
@@ -68,8 +68,8 @@ int main(void)
         n ++;
     }
 
-    abs_accuracy = fabs(f_x - s_x); /**< absolute accuracy */
-    rel_accuracy = abs_accuracy / fabs(f_x); /**< relative accuracy */
+    abs_accuracy = fabsf(f_x - s_x); /**< absolute accuracy */
+    rel_accuracy = abs_accuracy / fabsf(f_x); /**< relative accuracy */
 
     printf("The result f_x, s_x, absolute accuracy and relative accuracy: %f %f %f %f", \
     f_x, s_x, abs_accuracy, rel_accuracy);
