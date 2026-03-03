@@ -38,8 +38,8 @@ double take_sum(void)
             /** checking for the positivity of a number */
             if (x >= 0)
             {
-            cur_sum += sqrt(x / n);
-            n ++;
+                cur_sum += sqrt(x / n);
+                n ++;
             }
         }
     } while (x >= 0);
@@ -58,15 +58,16 @@ int main(void)
 {
     double sum, g_x; /**< the sum of the numbers inside the sine and the result g(x) */
 
+    printf("Enter positive numbers; to complete the input, enter a negative number: ");
     sum = take_sum();
 
     /** validation for input correctness */
     if (sum == -1)
     {
-        printf("Incorrect input");
+        printf("Incorrect input\n");
         return 1;
     }
-    
+
     g_x = sin(sum);
     
     printf("The result g(x): %lf", g_x);
