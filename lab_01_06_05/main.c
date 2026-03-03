@@ -2,7 +2,7 @@
  * @file main.c
  * @author Balyabin Yaroslav (balyabinyav@student.bmstu.ru)
  * @brief Lab 01 06 05
- * @version 0.1
+ * @version 0.2
  * @date 2026-03-01
  * 
  * @copyright Copyright (c) 2026
@@ -95,11 +95,9 @@ int main(void)
     if (det_1 * det_2 < 0 && det_3 * det_4 < 0)
     {
         printf("1");
-        return 0;
     }
     else
     {
         printf("0");
-        return 0;
     }
 }
