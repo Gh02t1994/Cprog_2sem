@@ -1,7 +1,7 @@
 /**
  * @file main.c
  * @author Balyabin Yaroslav (balyabinyav@student.bmstu.ru)
- * @brief Lab 01 05 01
+ * @brief Lab 01 05 05
  * @version 0.2
  * @date 2026-02-01
  * 
