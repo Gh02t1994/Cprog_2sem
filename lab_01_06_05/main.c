@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 
+#define EPS 0.000001
+
 /**
  * @brief calculating the lenght of segment
  * 
@@ -73,16 +75,16 @@ int main(void)
     }
 
     /** validation for the correctness of the segment input */
-    if (check_segments(x_p, y_p, x_q, y_q) == 0 || check_segments(x_r, y_r, x_s, y_s) == 0)
+    if (check_segments(x_p, y_p, x_q, y_q) < EPS || check_segments(x_r, y_r, x_s, y_s) < EPS)
     {
         printf("Should be a segment, not a point");
         return 2;
     }
 
-    det_1 = calc_determinant(x_p, y_p, x_q, y_q, x_r, y_r); /** the determinant of pq pr (pq and r) */
-    det_2 = calc_determinant(x_p, y_p, x_q, y_q, x_s, y_s); /** the determinant of pq ps (pq and s) */
-    det_3 = calc_determinant(x_r, y_r, x_s, y_s, x_p, y_p); /** the determinant of rs rp (rs and p) */
-    det_4 = calc_determinant(x_r, y_r, x_s, y_s, x_q, y_q); /** the determinant of rs rq (rs and q) */
+    det_1 = calc_determinant(x_p, y_p, x_q, y_q, x_r, y_r); /**< the determinant of pq pr (pq and r) */
+    det_2 = calc_determinant(x_p, y_p, x_q, y_q, x_s, y_s); /**< the determinant of pq ps (pq and s) */
+    det_3 = calc_determinant(x_r, y_r, x_s, y_s, x_p, y_p); /**< the determinant of rs rp (rs and p) */
+    det_4 = calc_determinant(x_r, y_r, x_s, y_s, x_q, y_q); /**< the determinant of rs rq (rs and q) */
 
     /**
      * determinants are used to check where the point is relative to the segment:
@@ -100,6 +102,4 @@ int main(void)
     {
         printf("0");
     }
-    
-    return 0;
 }

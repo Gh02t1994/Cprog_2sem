@@ -39,9 +39,9 @@ float next_term(int cur_n, float cur_x, float old_term)
  */
 int main(void)
 {
-    float abs_accuracy, rel_accuracy, f_x, s_x = 0;
+    float abs_accuracy, rel_accuracy, f_x, s_x = 0; /**< absolute accuracy, realtive accuracy, f(x) anf s(x) */
     float x, eps;
-    float cur_term = 1;
+    float cur_term = 1; /**< current term */
     int n = 1;
 
     printf("Enter x (|x| < 1) and epsilon accuracy (0 < eps <= 1): ");
