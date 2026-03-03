@@ -2,7 +2,7 @@
  * @file main.c
  * @author Balyabin Yaroslav (balyabinyav@student.bmstu.ru)
  * @brief Lab 01 09 01
- * @version 0.1
+ * @version 0.2
  * @date 2026-03-01
  * 
  * @copyright Copyright (c) 2026
@@ -16,7 +16,7 @@
  * @brief calculating the number g(x) = sin(...)
  * 
  * @return double
- * cur_sum - the sum of the numbers inside the sine or -1 - input error
+ * cur_sum - the sum of the numbers inside the sine or -1 - input error or -2 - no input
  */
 double take_sum(void)
 {
@@ -43,6 +43,11 @@ double take_sum(void)
             }
         }
     } while (x >= 0);
+
+    if (n == 1)
+    {
+        cur_sum = -2;
+    }
     
     return cur_sum;
 }
@@ -53,6 +58,7 @@ double take_sum(void)
  * @return int
  * 0 — successful completion
  * 1 — input error
+ * 2 - no input
  */
 int main(void)
 {
@@ -64,10 +70,15 @@ int main(void)
     /** validation for input correctness */
     if (sum == -1)
     {
-        printf("Incorrect input\n");
+        printf("Incorrect input");
         return 1;
     }
-
+    else if (sum == -2)
+    {
+        printf("There is no input");
+        return 2;
+    }
+    
     g_x = sin(sum);
     
     printf("The result g(x): %lf", g_x);
