@@ -22,7 +22,7 @@
  * @return float
  * lenght_of_seg - the length squared of the segment
  */
-int check_segments(float x_1, float y_1, float x_2, float y_2)
+float check_segments(float x_1, float y_1, float x_2, float y_2)
 {
     float lenght_of_seg = (x_2 - x_1) * (x_2 - x_1) + (y_2 - y_1) * (y_2 - y_1); /**< the length squared */
 
@@ -95,9 +95,11 @@ int main(void)
     if (det_1 * det_2 < 0 && det_3 * det_4 < 0)
     {
         printf("1");
+        return 0;
     }
     else
     {
         printf("0");
+        return 0;
     }
 }
