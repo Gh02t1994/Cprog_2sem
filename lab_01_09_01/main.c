@@ -12,6 +12,9 @@
 #include <stdio.h>
 #include <math.h>
 
+//** Epsylon */
+#define EPS 1e-6
+
 /**
  * @brief calculating the number g(x) = sin(...)
  * 
@@ -30,23 +33,23 @@ double take_sum(void)
         /** validation for input correctness */
         if (rc != 1)
         {
-            cur_sum = -1;
+            cur_sum = -1.0;
             break;
         }
         else
         {
             /** checking for the positivity of a number */
-            if (x >= 0)
+            if (x >= 0.0)
             {
                 cur_sum += sqrt(x / n);
                 n ++;
             }
         }
-    } while (x >= 0);
+    } while (x >= 0.0);
 
     if (n == 1)
     {
-        cur_sum = -2;
+        cur_sum = -2.0;
     }
     
     return cur_sum;
@@ -68,15 +71,15 @@ int main(void)
     sum = take_sum();
 
     /** validation for input correctness */
-    if (sum == -1)
-    {
-        printf("Incorrect input");
-        return 1;
-    }
-    else if (sum == -2)
+    if (sum - (-2.0) < EPS)
     {
         printf("There is no input");
         return 2;
+    }
+    if (sum - (-1.0) < EPS)
+    {
+        printf("Incorrect input");
+        return 1;
     }
     
     g_x = sin(sum);

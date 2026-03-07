@@ -41,7 +41,7 @@ int main(void)
 {
     int number;
 
-    printf("Enter the natural number (>0): ");
+    printf("Enter the natural number more than zero: ");
     /** validation for input correctness */
     if (scanf("%d", &number) != 1)
     {
