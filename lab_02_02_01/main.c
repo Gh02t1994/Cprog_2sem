@@ -2,7 +2,7 @@
  * @file main.c
  * @author Balyabin Yaroslav (balyabinyav@student.bmstu.ru)
  * @brief Lab 02 02 01
- * @version 0.1
+ * @version 0.2
  * @date 2026-03-23
  * 
  * @copyright Copyright (c) 2026
@@ -16,6 +16,7 @@
 #define SUCCESS 0 /**< success return code */
 #define INP_ERR 1 /**< input error return code */
 #define LOGIC_ERR 2 /**< logical error return code */
+#define NO_NUMBERS 3 /**< lack of numbers matching the condition */
 
 /**
  * @brief array input
@@ -152,6 +153,7 @@ int main(void)
     if (end_size_arr == 0)
     {
         printf("There are no prime numbers");
+        return NO_NUMBERS;
     }
     else
     {

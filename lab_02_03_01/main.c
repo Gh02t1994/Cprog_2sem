@@ -2,7 +2,7 @@
  * @file main.c
  * @author Balyabin Yaroslav (balyabinyav@student.bmstu.ru)
  * @brief Lab 02 03 01
- * @version 0.1
+ * @version 0.2
  * @date 2026-03-23
  * 
  * @copyright Copyright (c) 2026
@@ -127,7 +127,7 @@ int insert_fib_in_arr(int *arr, int size)
 int main(void)
 {
     int arr[MAX_SIZE];
-    int size_arr, new_size;
+    int size_arr;
 
     /** validation for input correctness */
     printf("Enter array size up to 10: ");
@@ -150,18 +150,10 @@ int main(void)
         return INP_ERR;
     }
 
-    new_size = insert_fib_in_arr(arr, size_arr);
+    size_arr = insert_fib_in_arr(arr, size_arr);
 
-    /** checking for multiples of 3 */
-    if (new_size == size_arr)
-    {
-        printf("There are no multiples of three here");
-    }
-    else
-    {
-        printf("Modified array with Fiboncci numbers: ");
-        output_arr(arr, new_size);
-    }
+    printf("Modified array with Fiboncci numbers: ");
+    output_arr(arr, size_arr);
 
     return SUCCESS;
 }
