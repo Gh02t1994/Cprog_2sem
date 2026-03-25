@@ -2,7 +2,7 @@
  * @file main.c
  * @author Balyabin Yaroslav (balyabinyav@student.bmstu.ru)
  * @brief Lab 02 04 02
- * @version 0.1
+ * @version 0.2
  * @date 2026-03-25
  * 
  * @copyright Copyright (c) 2026
@@ -26,18 +26,31 @@
  * SPECIAL_RC - overflow return code
  * i - array size
  */
-int input_arr(int *arr)
+int input_arr(int *arr, int *size_ind)
 {
-    for (int i = 0; i < MAX_SIZE; i++)
+    int temp; /**< temp number */
+    *size_ind = 0; /**< current index and size */
+
+    while (*size_ind < MAX_SIZE)
     {
-        /** validation for input correctness */
-        if (scanf("%d", &arr[i]) != 1)
+        if (scanf("%d", &arr[*size_ind]) != 1)
         {
-            return i;
+            return SUCCESS;
+        }
+        else
+        {
+            (*size_ind)++;
         }
     }
-    
-    return SPECIAL_RC;
+
+    if (scanf("%d", &temp) == 1)
+    {
+        return SPECIAL_RC;
+    }
+    else
+    {
+        return SUCCESS;
+    }
 }
 
 /**
@@ -64,12 +77,12 @@ void output_arr(int *arr, int size)
  * 
  * @return void
  */
-void bubble_sort(int *arr, int size)
+void selection_sort(int *arr, int size)
 {
     int min_ind; /**< the index of the minimum number */
     int buf; /**< buffer number */
 
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < size - 1; i++)
     {
         min_ind = i;
 
@@ -101,14 +114,7 @@ int main(void)
     int rc_inp = 0; /**< overflow return code */
 
     printf("Enter the array elements: ");
-    size_arr = input_arr(arr);
-
-    /** checking overflowing */
-    if (size_arr == 100)
-    {
-        rc_inp = 100;
-        size_arr = 10;
-    }
+    rc_inp = input_arr(arr, &size_arr);
 
     /** checking for an empty array */
     if (size_arr == 0)
@@ -117,7 +123,7 @@ int main(void)
         return EMPTY;
     }
     
-    bubble_sort(arr, size_arr);
+    selection_sort(arr, size_arr);
 
     printf("Sorted array: ");
     output_arr(arr, size_arr);
