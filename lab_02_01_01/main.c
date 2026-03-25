@@ -107,6 +107,7 @@ int main(void)
     }
 
     /** input array */
+    printf("Enter the array elements: ");
     if (input_arr(arr, size_arr) == INP_ERR)
     {
         return INP_ERR;

@@ -122,8 +122,10 @@ int arr_of_prime(int *arr, int size, int *new_arr)
  */
 int main(void)
 {
-    int start_arr[MAX_SIZE], end_arr[MAX_SIZE]; /**< start and new arrays */
-    int start_size_arr, end_size_arr; /**< sizes of start and new arrays */
+    int start_arr[MAX_SIZE]; /**< start array */
+    int end_arr[MAX_SIZE]; /**< new arrays */
+    int start_size_arr; /**< size of start array */
+    int end_size_arr; /**< sizes of new array */
 
     /** validation for input correctness */
     printf("Enter array size up to 10: ");
@@ -141,6 +143,7 @@ int main(void)
     }
 
     /** input array */
+    printf("Enter the array elements: ");
     if (input_arr(start_arr, start_size_arr) == INP_ERR)
     {
         return INP_ERR;

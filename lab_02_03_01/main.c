@@ -91,7 +91,7 @@ int insert_in_arr(int *arr, int size, int pos, int numb)
  */
 int insert_fib_in_arr(int *arr, int size)
 {
-    int fib_0 = 0, fib_1 = 1, fib_copy;
+    int fib_0 = 0, fib_1 = 1, fib_copy; /**< fibonacci numbers */
     int i = 0;
 
     while (i < size)
@@ -117,7 +117,7 @@ int insert_fib_in_arr(int *arr, int size)
 }
 
 /**
- * @brief 
+ * @brief entering an array and adding Fibonacci numbers to it after multiples of 3
  * 
  * @return int
  * SUCCESS - success return code
@@ -126,8 +126,8 @@ int insert_fib_in_arr(int *arr, int size)
  */
 int main(void)
 {
-    int arr[MAX_SIZE];
-    int size_arr;
+    int arr[MAX_SIZE]; /**< array */
+    int size_arr; /**< array size */
 
     /** validation for input correctness */
     printf("Enter array size up to 10: ");
@@ -145,6 +145,7 @@ int main(void)
     }
 
     /** input array */
+    printf("Enter the array elements: ");
     if (input_arr(arr, size_arr) == INP_ERR)
     {
         return INP_ERR;
