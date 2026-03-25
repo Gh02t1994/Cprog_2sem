@@ -37,20 +37,16 @@ int input_arr(int *arr, int *size_ind)
         {
             return SUCCESS;
         }
-        else
-        {
-            (*size_ind)++;
-        }
+        
+        (*size_ind)++;
     }
 
     if (scanf("%d", &temp) == 1)
     {
         return SPECIAL_RC;
     }
-    else
-    {
-        return SUCCESS;
-    }
+
+    return SUCCESS;
 }
 
 /**
@@ -133,8 +129,6 @@ int main(void)
     {
         return SPECIAL_RC;
     }
-    else
-    {
-        return SUCCESS;
-    }
+
+    return SUCCESS;
 }

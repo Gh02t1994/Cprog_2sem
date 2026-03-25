@@ -2,5 +2,6 @@
 *.o
 *.gcno
 *.gcda
+*.gcov
 .DS_Store
 .vscode/
