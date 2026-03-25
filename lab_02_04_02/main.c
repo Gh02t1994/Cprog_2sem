@@ -35,7 +35,7 @@ int input_arr(int *arr, int *size_ind)
     {
         if (scanf("%d", &arr[*size_ind]) != 1)
         {
-            return SUCCESS;
+            break;
         }
         
         (*size_ind)++;
@@ -107,7 +107,7 @@ int main(void)
 {
     int arr[MAX_SIZE]; /**< array */
     int size_arr; /**< array size */
-    int rc_inp = 0; /**< overflow return code */
+    int rc_inp; /**< overflow return code */
 
     printf("Enter the array elements: ");
     rc_inp = input_arr(arr, &size_arr);
