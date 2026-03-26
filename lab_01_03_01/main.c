@@ -12,7 +12,6 @@
 #include <stdio.h>
 
 #define CHECK_POS 0 /**< the number to check for positivity */
-#define CHECK_TEM 100 /**< the number for checking the water temperature */
 #define SUCCESS 0 /**< success return code */
 #define INP_ERR 1 /**< input error return code */
 #define MATH_ERR 2 /**< mathematical error return code */
@@ -39,8 +38,7 @@ int main(void)
     }
 
     /** validation for mathematical correctness */
-    if (v_1 <= CHECK_POS || v_2 <= CHECK_POS || t_1 <= CHECK_POS || \
-        t_2 <= CHECK_POS || t_1 >= CHECK_TEM || t_2 >= CHECK_TEM)
+    if (v_1 <= CHECK_POS || v_2 <= CHECK_POS || t_1 <= CHECK_POS || t_2 <= CHECK_POS)
     {
         printf("Incorrect mathematical input\n");
         return MATH_ERR;
