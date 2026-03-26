@@ -11,37 +11,45 @@
 
 #include <stdio.h>
 
+#define NUM_FLATS 36 /**< number of flats in one entrance */
+#define NUM_FLATS_ON_FLOOR 4 /**< number of apartments per floor */
+#define CHECK_POS 0 /**< the number to check for positivity */
+#define SUCCESS 0 /**< success return code */
+#define INP_ERR 1 /**< input error return code */
+#define MATH_ERR 2 /**< mathematical error return code */
+
 /**
  * @brief calculating the number of apartments and floor by number of flat
  * 
  * @return int
- * 0 — successful completion
- * 1 — input error
- * 2 — incorrect mathematical data
+ * SUCCESS — successful completion
+ * INP_ERR — input error
+ * MATH_ERR — incorrect mathematical data
  */
 int main(void)
 {
     int num_of_flat; /**< the number of flat */
-    int num_apart, floor; /**< the number of apartments and number of floor */
+    int num_apart; /**< the number of apartments */
+    int floor; /**< the number of floor */
 
     printf("Enter the number of flat: ");
     /** validation for input correctness */
     if (scanf("%d", &num_of_flat) != 1)
     {
         printf("Incorrect input");
-        return 1;
+        return INP_ERR;
     }
 
     /** validation for mathematical correctness */
     if (num_of_flat <= 0)
     {
         printf("Incorrect mathematical input");
-        return 2;
+        return MATH_ERR;
     }
 
-    num_apart = (num_of_flat - 1) / 36 + 1; /**< calculating the number of apartments */
-    floor = ((num_of_flat - 1) % 36) / 4 + 1; /**< calculating the number of floor*/
+    num_apart = (num_of_flat - 1) / NUM_FLATS + 1; /**< calculating the number of apartments */
+    floor = ((num_of_flat - 1) % NUM_FLATS) / NUM_FLATS_ON_FLOOR + 1; /**< calculating the number of floor*/
     
     printf("The number of apartments and floor: %d %d", num_apart, floor);
-    return 0;
+    return SUCCESS;
 }

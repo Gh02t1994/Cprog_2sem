@@ -32,3 +32,6 @@ s: = 56;  -->  s = 56;
 ```
 print (Year has s weeks)  -->  printf("Year has %d weeks\n", s);
 ```
+
+## Пункт 5. Логическая ошибка
+В году 52 недели.

@@ -1,10 +1,11 @@
 #!/bin/bash
 
-prog=./app.exe
+script_dir=$(dirname "$(realpath "$0")")
+prog=$(realpath "$script_dir/../../app.exe")
 
 in_file="$1"
-file_out="./func_tests/data/$2"
+file_out="$(realpath "$script_dir/../data")/$2"
 
 $prog < "$in_file" > "pos_out.txt"
 
-./func_tests/scripts/comparator.sh "pos_out.txt" "$file_out"
+"$script_dir"/comparator.sh "pos_out.txt" "$file_out"

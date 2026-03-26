@@ -2,5 +2,5 @@
 
 rm -f ./*.o ./*.exe ./*.gcno ./*.gcda ./*.gcov
 
-rm "coverage.txt"
-rm "pos_out.txt"
+rm -f "coverage.txt"
+rm -f "pos_out.txt"

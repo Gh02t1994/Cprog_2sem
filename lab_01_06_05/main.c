@@ -12,7 +12,10 @@
 #include <stdio.h>
 #include <math.h>
 
-#define EPS 1e-6
+#define EPS 1e-6 /**< epsylon */
+#define SUCCESS 0 /**< success return code */
+#define INP_ERR 1 /**< input error return code */
+#define SEMGENT_ERR 2 /**< segment length error return code */
 
 /**
  * @brief calculating the lenght of segment
@@ -58,9 +61,9 @@ float calc_determinant(float x_1, float y_1, float x_2, float y_2, float x_3, fl
  * @brief checking two segments for an intersection
  * 
  * @return int
- * 0 — successful completion
- * 1 — input error
- * 2 — incorrect segment entry
+ * SUCCESS — successful completion
+ * INP_ERR — input error
+ * SEGMENT_ERR — incorrect segment entry
  */
 int main(void)
 {
@@ -72,14 +75,14 @@ int main(void)
     if (scanf("%f %f %f %f %f %f %f %f", &x_p, &y_p, &x_q, &y_q, &x_r, &y_r, &x_s, &y_s) != 8)
     {
         printf("Incorrect input");
-        return 1;
+        return INP_ERR;
     }
 
     /** validation for the correctness of the segment input */
     if (check_segments(x_p, y_p, x_q, y_q) < EPS || check_segments(x_r, y_r, x_s, y_s) < EPS)
     {
         printf("Should be a segment, not a point");
-        return 2;
+        return SEMGENT_ERR;
     }
 
     det_1 = calc_determinant(x_p, y_p, x_q, y_q, x_r, y_r); /**< the determinant of pq pr (pq and r) */
@@ -103,4 +106,5 @@ int main(void)
     {
         printf("0");
     }
+    return SUCCESS;
 }

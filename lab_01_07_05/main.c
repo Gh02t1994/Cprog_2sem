@@ -12,6 +12,12 @@
 #include <stdio.h>
 #include <math.h>
 
+#define CHECK_POS 0.0 /**< the number to check for positivity */
+#define CHECK_LESS_ONE 1.0 /**< checking that the number is less than 1 */
+#define SUCCESS 0 /**< success return code */
+#define INP_ERR 1 /**< input error return code */
+#define MATH_ERR 2 /**< mathematical error return code */
+
 /**
  * @brief calculating the next term of the number expansion
  * 
@@ -33,15 +39,18 @@ float next_term(int cur_n, float cur_x, float old_term)
  * @brief сalculation of the numbers s(x), f(x), absolute and relative accuracy
  * 
  * @return int
- * 0 — successful completion
- * 1 — input error
- * 2 — incorrect mathematical data
+ * SUCCESS — successful completion
+ * INP_ERR — input error
+ * MATH_ERR — incorrect mathematical data
  */
 int main(void)
 {
-    float abs_accuracy, rel_accuracy, f_x, s_x = 0; /**< absolute accuracy, realtive accuracy, f(x) anf s(x) */
-    float x, eps;
+    float abs_accuracy, rel_accuracy; /**< absolute and realtive accuracy */
+    float f_x; /**< f(x) */
+    float s_x = 0; /**< s(x) */
+    float eps; /**< epsylon */
     float cur_term = 1.0f; /**< current term */
+    float x;
     int n = 1;
 
     printf("Enter x (|x| < 1) and epsilon accuracy (0 < eps <= 1): ");
@@ -49,13 +58,13 @@ int main(void)
     if (scanf("%f %f", &x, &eps) != 2)
     {
         printf("Incorrect input");
-        return 1;
+        return INP_ERR;
     }
     /** validation for mathematical correctness */
-    if (eps <= 0.0f || eps > 1.0f || fabs(x) >= 1.0f)
+    if (eps <= CHECK_POS || eps > CHECK_LESS_ONE || fabs(x) >= CHECK_LESS_ONE)
     {
         printf("Incorrect mathematical input");
-        return 2;
+        return MATH_ERR;
     }
 
     f_x = 1.0f / sqrtf(1.0f - x * x); /**< f(x) */
@@ -73,4 +82,6 @@ int main(void)
 
     printf("The result f_x, s_x, absolute accuracy and relative accuracy: %f %f %f %f", \
     f_x, s_x, abs_accuracy, rel_accuracy);
+
+    return SUCCESS;
 }
