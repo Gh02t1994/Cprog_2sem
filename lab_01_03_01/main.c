@@ -11,13 +11,18 @@
 
 #include <stdio.h>
 
+#define CHECK_POS 0 /**< the number to check for positivity */
+#define SUCCESS 0 /**< success return code */
+#define INP_ERR 1 /**< input error return code */
+#define MATH_ERR 2 /**< mathematical error return code */
+
 /**
  * @brief calculating average volume and temperature during mixing two containers
  * 
  * @return int
- * 0 — successful completion
- * 1 — input error
- * 2 — incorrect mathematical data
+ * SUCCESS — successful completion
+ * INP_ERR — input error
+ * MATH_ERR — incorrect mathematical data
  */
 int main(void)
 {
@@ -29,19 +34,19 @@ int main(void)
     if (scanf("%f %f %f %f", &v_1, &t_1, &v_2, &t_2) != 4)
     {
         printf("Incorrect input\n");
-        return 1;
+        return INP_ERR;
     }
 
     /** validation for mathematical correctness */
-    if (v_1 <= 0 || v_2 <= 0 || t_1 <= 0 || t_2 <= 0)
+    if (v_1 <= CHECK_POS || v_2 <= CHECK_POS || t_1 <= CHECK_POS || t_2 <= CHECK_POS)
     {
         printf("Incorrect mathematical input\n");
-        return 2;
+        return MATH_ERR;
     }
     
     v_total = v_1 + v_2; /**< total volume */
     t_total = (v_1 * t_1 + v_2 * t_2) / v_total; /**< total temperature */
 
     printf("The total volume and temperature: %.6f %.6f", v_total, t_total);
-    return 0;
+    return SUCCESS;
 }

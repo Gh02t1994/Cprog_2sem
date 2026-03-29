@@ -11,6 +11,12 @@
 
 #include <stdio.h>
 
+#define DEC 10 /**< decimal number system */
+#define CHECK_POS 0 /**< the number to check for positivity */
+#define SUCCESS 0 /**< success return code */
+#define INP_ERR 1 /**< input error return code */
+#define MATH_ERR 2 /**< mathematical error return code */
+
 /**
  * @brief character-by-character printing of a number
  * 
@@ -21,21 +27,21 @@
 void printing_number(int full_number)
 {
     /** move to the higher digits of the number */
-    if (full_number >= 10)
+    if (full_number >= DEC)
     {
-        printing_number(full_number / 10);
+        printing_number(full_number / DEC);
     }
     /** output the low-order digits */
-    printf("%d", full_number % 10);
+    printf("%d", full_number % DEC);
 }
 
 /**
  * @brief output of the entered number
  * 
  * @return int
- * 0 — successful completion
- * 1 — input error
- * 2 — incorrect mathematical data
+ * SUCCESS — successful completion
+ * INP_ERR — input error
+ * MATH_ERR — incorrect mathematical data
  */
 int main(void)
 {
@@ -46,18 +52,19 @@ int main(void)
     if (scanf("%d", &number) != 1)
     {
         printf("Incorrect input");
-        return 1;
+        return INP_ERR;
     }
 
     /** validation for mathematical correctness */
-    if (number <= 0)
+    if (number <= CHECK_POS)
     {
         printf("Incorrect mathematical input");
-        return 2;
+        return MATH_ERR;
     }
 
     printf("The number: ");
     printing_number(number);
 
     printf("\n");
+    return SUCCESS;
 }

@@ -12,8 +12,11 @@
 #include <stdio.h>
 #include <math.h>
 
-//** Epsylon */
-#define EPS 1e-6
+#define EPS 1e-6 /**< epsylon */
+#define CHECK_POS 0.0 /**< the number to check for positivity */
+#define SUCCESS 0 /**< success return code */
+#define INP_ERR 1 /**< input error return code */
+#define NO_INP 2 /**< no input return code */
 
 /**
  * @brief calculating the number g(x) = sin(...)
@@ -33,23 +36,23 @@ double take_sum(void)
         /** validation for input correctness */
         if (rc != 1)
         {
-            cur_sum = -1.0;
+            cur_sum = -INP_ERR;
             break;
         }
         else
         {
             /** checking for the positivity of a number */
-            if (x >= 0.0)
+            if (x >= CHECK_POS)
             {
                 cur_sum += sqrt(x / n);
                 n ++;
             }
         }
-    } while (x >= 0.0);
+    } while (x >= CHECK_POS);
 
     if (n == 1)
     {
-        cur_sum = -2.0;
+        cur_sum = -NO_INP;
     }
     
     return cur_sum;
@@ -59,9 +62,9 @@ double take_sum(void)
  * @brief calculating the number g(x) = sin(...)
  * 
  * @return int
- * 0 — successful completion
- * 1 — input error
- * 2 - no input
+ * SUCCESS — successful completion
+ * INP_ERR — input error
+ * NO_INP — no input
  */
 int main(void)
 {
@@ -71,18 +74,20 @@ int main(void)
     sum = take_sum();
 
     /** validation for input correctness */
-    if (sum - (-2.0) < EPS)
+    if (sum + NO_INP < EPS)
     {
         printf("There is no input");
-        return 2;
+        return NO_INP;
     }
-    if (sum - (-1.0) < EPS)
+    if (sum + INP_ERR < EPS)
     {
         printf("Incorrect input");
-        return 1;
+        return INP_ERR;
     }
     
     g_x = sin(sum);
     
     printf("The result g(x): %lf", g_x);
+
+    return SUCCESS;
 }

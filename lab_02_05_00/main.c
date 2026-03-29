@@ -37,10 +37,8 @@ int input_arr(int *arr, int *end)
             printf("Incorrect input");
             return INP_ERR;
         }
-        else
-        {
-            current++;
-        }
+
+        current++;
     }
     
     return SUCCESS;
@@ -108,4 +106,6 @@ int main(void)
 
     max_of_sum = find_max(arr, end);
     printf("\nThe maximum sum of elements: %d", max_of_sum);
+
+    return SUCCESS;
 }

@@ -1,6 +1,8 @@
 #!/bin/bash
 
-prog=./app.exe
+script_dir=$(dirname "$(realpath "$0")")
+prog=$(realpath "$script_dir/../../app.exe")
+
 in_file="$1"
 
 if ! "$prog" < "$in_file" > /dev/null 2>&1; then

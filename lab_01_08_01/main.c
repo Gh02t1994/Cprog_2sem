@@ -11,6 +11,14 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include <limits.h>
+
+#define CHECK_POS 0 /**< the number to check for positivity */
+#define BYTE_LIMIT ((1U << CHAR_BIT) - 1) /**< checking a number to see if it is 1 byte */
+#define SIZE (CHAR_BIT * sizeof(uint32_t)) /**< the size */
+#define SUCCESS 0 /**< success return code */
+#define INP_ERR 1 /**< input error return code */
+#define MATH_ERR 2 /**< mathematical error return code */
 
 /**
  * @brief printing a number in binary format
@@ -21,7 +29,7 @@
  */
 void print_in_binary(uint32_t byte)
 {
-    for (int i = 31; i >= 0; i--)
+    for (int i = SIZE - 1; i >= 0; i--)
     {
         printf("%u", (byte >> i) & 1);
     }
@@ -38,7 +46,7 @@ void print_in_binary(uint32_t byte)
  */
 unsigned int unpacking_from_unsight_32(uint32_t packed_byte, int shift)
 {
-    unsigned int byte = (packed_byte >> shift) & 255;
+    unsigned int byte = (packed_byte >> shift) & BYTE_LIMIT;
 
     return byte;
 }
@@ -47,9 +55,9 @@ unsigned int unpacking_from_unsight_32(uint32_t packed_byte, int shift)
  * @brief packing 4 bytes into 1 unsigned number and decompressing back 4 numbers of 1 byte each
  * 
  * @return int
- * 0 — successful completion
- * 1 — input error
- * 2 — incorrect mathematical data
+ * SUCCESS — successful completion
+ * INP_ERR — input error
+ * MATH_ERR — incorrect mathematical data
  */
 int main(void)
 {
@@ -62,27 +70,29 @@ int main(void)
     if (scanf("%u %u %u %u", &byte_1, &byte_2, &byte_3, &byte_4) != 4)
     {
         printf("Error: Incorrect input");
-        return 1;
+        return INP_ERR;
     }
     /** validation for mathematical correctness */
-    if (!(0 <= byte_1 && byte_1 <= 255 && 0 <= byte_2 && byte_2 <= 255 \
-        && 0 <= byte_3 && byte_3 <= 255 && 0 <= byte_4 && byte_4 <= 255))
+    if (!(CHECK_POS <= byte_1 && byte_1 <= BYTE_LIMIT && CHECK_POS <= byte_2 && byte_2 <= BYTE_LIMIT \
+        && CHECK_POS <= byte_3 && byte_3 <= BYTE_LIMIT && CHECK_POS <= byte_4 && byte_4 <= BYTE_LIMIT))
     {
         printf("Error: Incorrect mathematical input");
-        return 2;
+        return MATH_ERR;
     }
 
     /** shift each byte by the appropriate number of bits and connect using | */
-    total_byte = (byte_1 << 24) | (byte_2 << 16) | (byte_3 << 8) | byte_4;
+    total_byte = (byte_1 << 3 * CHAR_BIT) | (byte_2 << 2 * CHAR_BIT) | (byte_3 << CHAR_BIT) | byte_4;
     
     printf("Result: ");
     print_in_binary(total_byte);
 
     /** decompressing bytes */
-    res_b_1 = unpacking_from_unsight_32(total_byte, 24);
-    res_b_2 = unpacking_from_unsight_32(total_byte, 16);
-    res_b_3 = unpacking_from_unsight_32(total_byte, 8);
+    res_b_1 = unpacking_from_unsight_32(total_byte, 3 * CHAR_BIT);
+    res_b_2 = unpacking_from_unsight_32(total_byte, 2 * CHAR_BIT);
+    res_b_3 = unpacking_from_unsight_32(total_byte, CHAR_BIT);
     res_b_4 = unpacking_from_unsight_32(total_byte, 0);
 
     printf(" %u %u %u %u", res_b_1, res_b_2, res_b_3, res_b_4);
+
+    return SUCCESS;
 }
