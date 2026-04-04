@@ -12,10 +12,13 @@
 #include <stdio.h>
 
 #define MAX_SIZE 10 /**< maximum array size */
+#define CHECK_POS 0 /**< the number to check for positivity */
 #define SUCCESS 0 /**< success return code */
 #define INP_ERR 1 /**< input error return code */
 #define LOGIC_ERR 2 /**< logical error return code */
 #define NO_NUMBERS 3 /**< lack of numbers matching the condition */
+#define FLAG_NO_NUM 0 /**< no numbers flag */
+#define FLAG_NUM 1 /**< flag about the presence of numbers */
 
 /**
  * @brief array input
@@ -27,9 +30,9 @@
  * INP_ERR - input error return code
  * SUCCESS - success return code
  */
-int input_arr(int *arr, int size)
+int input_arr(int arr[], size_t size)
 {
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         /** validation for input correctness */
         if (scanf("%d", &arr[i]) != 1)
@@ -50,26 +53,26 @@ int input_arr(int *arr, int size)
  * 
  * @return int
  * mult - multiplication result
- * 0 - a code meaning that there were no odd numbers
+ * FLAG_NO_NUM - a code meaning that there were no odd numbers
  */
-int multiplication_arr(int *arr, int size)
+int multiplication_arr(int arr[], size_t size)
 {
     int mult = 1;
-    int flag_odd = 0; /**< a flag that indicates the presence of odd numbers */
+    int flag_odd = FLAG_NO_NUM; /**< a flag that indicates the presence of odd numbers */
 
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         if (arr[i] % 2 != 0)
         {
             mult *= arr[i];
-            flag_odd = 1;
+            flag_odd = FLAG_NUM;
         }
     }
     
     /** check for odd numbers */
-    if (flag_odd == 0)
+    if (flag_odd == FLAG_NO_NUM)
     {
-        return 0;
+        return FLAG_NO_NUM;
     }
     else
     {
@@ -87,20 +90,20 @@ int multiplication_arr(int *arr, int size)
  */
 int main(void)
 {
-    int size_arr;
+    size_t size_arr;
     int arr[MAX_SIZE];
     int mult_of_odd; /**< multiplication result */
 
     /** validation for input correctness */
     printf("Enter array size up to 10: ");
-    if (scanf("%d", &size_arr) != 1)
+    if (scanf("%zu", &size_arr) != 1)
     {
         printf("Incorrect input");
         return INP_ERR;
     }
 
     /** validation for logical correctness */
-    if (size_arr <= 0 || size_arr > 10)
+    if (size_arr <= CHECK_POS || size_arr > MAX_SIZE)
     {
         printf("Logical error");
         return LOGIC_ERR;
@@ -115,7 +118,7 @@ int main(void)
 
     mult_of_odd = multiplication_arr(arr, size_arr);
 
-    if (mult_of_odd == 0)
+    if (mult_of_odd == FLAG_NO_NUM)
     {
         printf("There are no odd numbers");
         return NO_NUMBERS;

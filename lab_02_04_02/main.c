@@ -12,6 +12,7 @@
 #include <stdio.h>
 
 #define MAX_SIZE 10 /**< maximum array size */
+#define CHECK_POS 0 /**< the number to check for positivity */
 #define SUCCESS 0 /**< success return code */
 #define EMPTY 1 /**< return code for an empty array */
 #define SPECIAL_RC 100 /**< when overflowing */
@@ -24,9 +25,9 @@
  * 
  * @return int
  * SPECIAL_RC - overflow return code
- * i - array size
+ * SUCCESS - success return code
  */
-int input_arr(int *arr, int *size_ind)
+int input_arr(int arr[], size_t *size_ind)
 {
     int temp; /**< temp number */
     *size_ind = 0; /**< current index and size */
@@ -57,9 +58,9 @@ int input_arr(int *arr, int *size_ind)
  * 
  * @return void
  */
-void output_arr(int *arr, int size)
+void output_arr(int arr[], size_t size)
 {
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         printf("%d ", arr[i]);
     }
@@ -73,16 +74,16 @@ void output_arr(int *arr, int size)
  * 
  * @return void
  */
-void selection_sort(int *arr, int size)
+void selection_sort(int arr[], size_t size)
 {
     int min_ind; /**< the index of the minimum number */
     int buf; /**< buffer number */
 
-    for (int i = 0; i < size - 1; i++)
+    for (size_t i = 0; i < size - 1; i++)
     {
         min_ind = i;
 
-        for (int j = i + 1; j < size; j++)
+        for (size_t j = i + 1; j < size; j++)
         {
             if (arr[j] < arr[min_ind])
             {
@@ -106,14 +107,14 @@ void selection_sort(int *arr, int size)
 int main(void)
 {
     int arr[MAX_SIZE]; /**< array */
-    int size_arr; /**< array size */
+    size_t size_arr; /**< array size */
     int rc_inp; /**< overflow return code */
 
     printf("Enter the array elements: ");
     rc_inp = input_arr(arr, &size_arr);
 
     /** checking for an empty array */
-    if (size_arr == 0)
+    if (size_arr == CHECK_POS)
     {
         printf("Empty array");
         return EMPTY;

@@ -12,6 +12,7 @@
 #include <stdio.h>
 
 #define MAX_SIZE 20 /**< maximum array size */
+#define CHECK_POS 0 /**< the number to check for positivity */
 #define SUCCESS 0 /**< success return code */
 #define INP_ERR 1 /**< input error return code */
 #define LOGIC_ERR 2 /**< logical error return code */
@@ -26,9 +27,9 @@
  * INP_ERR - input error return code
  * SUCCESS - success return code
  */
-int input_arr(int *arr, int size)
+int input_arr(int arr[], size_t size)
 {
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         /** validation for input correctness */
         if (scanf("%d", &arr[i]) != 1)
@@ -49,9 +50,9 @@ int input_arr(int *arr, int size)
  * 
  * @return void
  */
-void output_arr(int *arr, int size)
+void output_arr(int arr[], size_t size)
 {
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         printf("%d ", arr[i]);
     }
@@ -65,12 +66,12 @@ void output_arr(int *arr, int size)
  * @param pos - index of position to insert
  * @param numb - number to insert
  * 
- * @return int
+ * @return size_t
  * size + 1 - new size of array
  */
-int insert_in_arr(int *arr, int size, int pos, int numb)
+int insert_in_arr(int arr[], size_t size, size_t pos, int numb)
 {
-    for (int i = size - 1; i >= pos; i--)
+    for (size_t i = size - 1; i >= pos; i--)
     {
         arr[i + 1] = arr[i];
     }
@@ -86,13 +87,13 @@ int insert_in_arr(int *arr, int size, int pos, int numb)
  * @param arr - array for inserting
  * @param size - array size
  * 
- * @return int
+ * @return size_t
  * size - new size of array
  */
-int insert_fib_in_arr(int *arr, int size)
+int insert_fib_in_arr(int arr[], size_t size)
 {
     int fib_0 = 0, fib_1 = 1, fib_copy; /**< fibonacci numbers */
-    int i = 0;
+    size_t i = 0;
 
     while (i < size)
     {
@@ -127,18 +128,18 @@ int insert_fib_in_arr(int *arr, int size)
 int main(void)
 {
     int arr[MAX_SIZE]; /**< array */
-    int size_arr; /**< array size */
+    size_t size_arr; /**< array size */
 
     /** validation for input correctness */
     printf("Enter array size up to 10: ");
-    if (scanf("%d", &size_arr) != 1)
+    if (scanf("%zu", &size_arr) != 1)
     {
         printf("Incorrect input");
         return INP_ERR;
     }
 
     /** validation for logical correctness */
-    if (size_arr <= 0 || size_arr > 10)
+    if (size_arr <= CHECK_POS || size_arr > MAX_SIZE)
     {
         printf("Logical error");
         return LOGIC_ERR;

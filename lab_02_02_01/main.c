@@ -13,6 +13,9 @@
 #include <math.h>
 
 #define MAX_SIZE 10 /**< maximum array size */
+#define CHECK_POS 0 /**< the number to check for positivity */
+#define PRIME 1 /**< return code for prime number */
+#define NOT_PRIME 0 /**< return code for not prime number */
 #define SUCCESS 0 /**< success return code */
 #define INP_ERR 1 /**< input error return code */
 #define LOGIC_ERR 2 /**< logical error return code */
@@ -28,9 +31,9 @@
  * INP_ERR - input error return code
  * SUCCESS - success return code
  */
-int input_arr(int *arr, int size)
+int input_arr(int arr[], size_t size)
 {
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         /** validation for input correctness */
         if (scanf("%d", &arr[i]) != 1)
@@ -51,9 +54,9 @@ int input_arr(int *arr, int size)
  * 
  * @return void
  */
-void output_arr(int *arr, int size)
+void output_arr(int arr[], size_t size)
 {
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         printf("%d ", arr[i]);
     }
@@ -65,25 +68,25 @@ void output_arr(int *arr, int size)
  * @param number - number to check
  * 
  * @return int
- * 0 - number not prime
- * 1 - number is prime
+ * NOT_PRIME - number not prime
+ * PRIME - number is prime
  */
 int is_prime(int number)
 {
     if (number <= 1)
     {
-        return 0;
+        return NOT_PRIME;
     }
     
     for (int i = 2; i <= sqrt(number); i++)
     {
         if (number % i == 0)
         {
-            return 0;
+            return NOT_PRIME;
         }
     }
 
-    return 1;
+    return PRIME;
 }
 
 /**
@@ -93,14 +96,14 @@ int is_prime(int number)
  * @param size - start array size
  * @param new_arr - new array
  * 
- * @return int
+ * @return size_t
  * new_size - size of new array
  */
-int arr_of_prime(int *arr, int size, int *new_arr)
+int arr_of_prime(int arr[], size_t size, int *new_arr)
 {
-    int new_size = 0;
+    size_t new_size = 0;
 
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         if (is_prime(arr[i]))
         {
@@ -124,19 +127,19 @@ int main(void)
 {
     int start_arr[MAX_SIZE]; /**< start array */
     int end_arr[MAX_SIZE]; /**< new arrays */
-    int start_size_arr; /**< size of start array */
-    int end_size_arr; /**< sizes of new array */
+    size_t start_size_arr; /**< size of start array */
+    size_t end_size_arr; /**< sizes of new array */
 
     /** validation for input correctness */
     printf("Enter array size up to 10: ");
-    if (scanf("%d", &start_size_arr) != 1)
+    if (scanf("%zu", &start_size_arr) != 1)
     {
         printf("Incorrect input");
         return INP_ERR;
     }
 
     /** validation for logical correctness */
-    if (start_size_arr <= 0 || start_size_arr > 10)
+    if (start_size_arr <= CHECK_POS || start_size_arr > MAX_SIZE)
     {
         printf("Logical error");
         return LOGIC_ERR;
@@ -153,7 +156,7 @@ int main(void)
     end_size_arr = arr_of_prime(start_arr, start_size_arr, end_arr);
 
     /** checking for an empty array */
-    if (end_size_arr == 0)
+    if (end_size_arr == CHECK_POS)
     {
         printf("There are no prime numbers");
         return NO_NUMBERS;

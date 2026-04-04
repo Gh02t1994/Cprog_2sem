@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-#define MAX_SIZE 20 /**< maximum array size */
+#define MAX_SIZE 10 /**< maximum array size */
 #define SUCCESS 0 /**< success return code */
 #define INP_ERR 1 /**< input error return code */
 #define LOGIC_ERR 2 /**< logical error return code */
@@ -26,7 +26,7 @@
  * INP_ERR - input error return code
  * SUCCESS - success return code
  */
-int input_arr(int *arr, int *end)
+int input_arr(int arr[], int *end)
 {
     int *current = arr; /**< current index */
 
@@ -45,7 +45,7 @@ int input_arr(int *arr, int *end)
 }
 
 /**
- * @brief array input
+ * @brief finding maximum in array
  * 
  * @param arr - array for searching and the first index
  * @param end - index after last element
@@ -53,7 +53,7 @@ int input_arr(int *arr, int *end)
  * @return int
  * maximum - maximum amount
  */
-int find_max(int *arr, int *end)
+int find_max(int arr[], int *end)
 {
     int *current = arr; /**< current index */
     
@@ -73,16 +73,24 @@ int find_max(int *arr, int *end)
     return maximum;
 }
 
+/**
+ * @brief entering an array and finding maximum summ in array
+ * 
+ * @return int
+ * SUCCESS - success return code
+ * INP_ERR - input error return code
+ * LOGIC_ERR - logical error return code
+ */
 int main(void)
 {
     int arr[MAX_SIZE]; /**< array */
     int *start = arr; /**< start index */
-    int size_arr; /**< array size */
+    size_t size_arr; /**< array size */
     int max_of_sum; /**< maximum amount */
 
     /** validation for input correctness */
     printf("Enter array size up to 10: ");
-    if (scanf("%d", &size_arr) != 1)
+    if (scanf("%zu", &size_arr) != 1)
     {
         printf("Incorrect input");
         return INP_ERR;
@@ -91,7 +99,7 @@ int main(void)
     int *end = arr + size_arr; /**< index after last element */
 
     /** validation for logical correctness */
-    if (end <= start || end - arr > 10)
+    if (end <= start || end - arr > MAX_SIZE)
     {
         printf("Logical error");
         return LOGIC_ERR;
