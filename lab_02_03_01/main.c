@@ -13,6 +13,8 @@
 
 #define MAX_SIZE 20 /**< maximum array size */
 #define CHECK_POS 0 /**< the number to check for positivity */
+#define FIB_0 0 /**< the zero fibonacci number */
+#define FIB_1 1 /**< the first fibonacci number */
 #define SUCCESS 0 /**< success return code */
 #define INP_ERR 1 /**< input error return code */
 #define LOGIC_ERR 2 /**< logical error return code */
@@ -92,8 +94,8 @@ int insert_in_arr(int arr[], size_t size, size_t pos, int numb)
  */
 int insert_fib_in_arr(int arr[], size_t size)
 {
-    int fib_0 = 0, fib_1 = 1, fib_copy; /**< fibonacci numbers */
-    size_t i = 0;
+    int fib_0 = FIB_0, fib_1 = FIB_1, fib_copy; /**< fibonacci numbers */
+    size_t i = CHECK_POS; /**< the number for the indexes */
 
     while (i < size)
     {

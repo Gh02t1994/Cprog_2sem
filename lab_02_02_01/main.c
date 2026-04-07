@@ -56,6 +56,8 @@ int input_arr(int arr[], size_t size)
  */
 void output_arr(int arr[], size_t size)
 {
+    printf("New array with prime numbers: ");
+
     for (size_t i = 0; i < size; i++)
     {
         printf("%d ", arr[i]);
@@ -112,6 +114,11 @@ int arr_of_prime(int arr[], size_t size, int *new_arr)
         }
     }
 
+    if (new_size == CHECK_POS)
+    {
+        printf("There are no prime numbers");
+    }
+
     return new_size;
 }
 
@@ -125,10 +132,8 @@ int arr_of_prime(int arr[], size_t size, int *new_arr)
  */
 int main(void)
 {
-    int start_arr[MAX_SIZE]; /**< start array */
-    int end_arr[MAX_SIZE]; /**< new arrays */
-    size_t start_size_arr; /**< size of start array */
-    size_t end_size_arr; /**< sizes of new array */
+    int start_arr[MAX_SIZE], end_arr[MAX_SIZE]; /**< start and new arrays */
+    size_t start_size_arr, end_size_arr; /**< sizes of start and new array */
 
     /** validation for input correctness */
     printf("Enter array size up to 10: ");
@@ -152,20 +157,12 @@ int main(void)
         return INP_ERR;
     }
 
-    /** creating new array */
     end_size_arr = arr_of_prime(start_arr, start_size_arr, end_arr);
-
-    /** checking for an empty array */
     if (end_size_arr == CHECK_POS)
     {
-        printf("There are no prime numbers");
         return NO_NUMBERS;
     }
-    else
-    {
-        printf("New array wit prime numbers: ");
-        output_arr(end_arr, end_size_arr);
-    }
 
+    output_arr(end_arr, end_size_arr);
     return SUCCESS;
 }

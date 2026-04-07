@@ -72,6 +72,7 @@ int multiplication_arr(int arr[], size_t size)
     /** check for odd numbers */
     if (flag_odd == FLAG_NO_NUM)
     {
+        printf("There are no odd numbers");
         return FLAG_NO_NUM;
     }
     else
@@ -90,8 +91,8 @@ int multiplication_arr(int arr[], size_t size)
  */
 int main(void)
 {
-    size_t size_arr;
-    int arr[MAX_SIZE];
+    size_t size_arr; /**< size of array */
+    int arr[MAX_SIZE]; /**< array */
     int mult_of_odd; /**< multiplication result */
 
     /** validation for input correctness */
@@ -117,16 +118,11 @@ int main(void)
     }
 
     mult_of_odd = multiplication_arr(arr, size_arr);
-
     if (mult_of_odd == FLAG_NO_NUM)
     {
-        printf("There are no odd numbers");
         return NO_NUMBERS;
     }
-    else
-    {
-        printf("Multiplication of odd numbers: %d", mult_of_odd);
-    }
 
+    printf("Multiplication of odd numbers: %d", mult_of_odd);
     return SUCCESS;
 }
