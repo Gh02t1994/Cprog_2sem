@@ -2,7 +2,7 @@
  * @file main.c
  * @author Balyabin Yaroslav (balyabinyav@student.bmstu.ru)
  * @brief Lab 03 03 01
- * @version 0.1
+ * @version 0.2
  * @date 2026-04-19
  * 
  * @copyright Copyright (c) 2026
@@ -14,7 +14,7 @@
 #include "functions.h"
 
 /**
- * @brief entering a matrix and sorting by minimum value in a row
+ * @brief entering a matrix and the arrangement of the elements clockwise
  * 
  * @return int
  * SUCCESS - success return code
@@ -24,7 +24,6 @@
 int main(void)
 {
     int matrix[MAX_SIZE][MAX_SIZE]; /**< matrix */
-    int arr[MAX_SIZE_ARRAY]; /**< array for matrix */
     size_t row_size, col_size; /**< matrix size */
     int rc; /**< input return code */
 
@@ -35,13 +34,7 @@ int main(void)
         return rc;
     }
 
-    /** input matrix */
-    if (input_matrix(arr, row_size, col_size) == INPUT_ERROR)
-    {
-        return INPUT_ERROR;
-    }
-
-    make_matrix(matrix, arr, row_size, col_size);
+    make_matrix(matrix, row_size, col_size);
 
     output_matrix(matrix, row_size, col_size);
 

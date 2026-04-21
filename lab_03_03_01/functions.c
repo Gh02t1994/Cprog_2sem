@@ -2,28 +2,28 @@
 #include "functions.h"
 
 /**
- * @brief finds the minimum element in a row
+ * @brief finds the maximum element in a row
  * 
  * @param matrix - input matrix
  * @param row - index of the row to search
  * @param cols - number of columns
  * 
  * @return int
- * minim - minimum value in the row
+ * maxim - maximum value in the row
  */
-int search_min(int matrix[MAX_SIZE][MAX_SIZE], size_t row, size_t cols)
+int search_max(int matrix[MAX_SIZE][MAX_SIZE], size_t row, size_t cols)
 {
-    int minim = matrix[row][ZERO_INDEX];
+    int maxim = matrix[row][ZERO_INDEX];
 
     for (size_t col = ZERO_INDEX + 1; col < cols; col++)
     {
-        if (matrix[row][col] < minim)
+        if (matrix[row][col] > maxim)
         {
-            minim = matrix[row][col];
+            maxim = matrix[row][col];
         }
     }
 
-    return minim;
+    return maxim;
 }
 
 /**
@@ -63,7 +63,7 @@ void sort_matrix(int matrix[MAX_SIZE][MAX_SIZE], size_t rows, size_t cols)
     {
         for (size_t row_j = row_i; row_j < rows; row_j++)
         {
-            if (search_min(matrix, row_i, cols) > search_min(matrix, row_j, cols))
+            if (search_max(matrix, row_i, cols) < search_max(matrix, row_j, cols))
             {
                 change_rows(matrix, row_i, row_j, cols);
             }

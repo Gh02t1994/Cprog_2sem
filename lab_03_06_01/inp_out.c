@@ -24,40 +24,12 @@ int input_size(size_t *size_rows, size_t *size_cols)
     }
 
     /** validation for logical correctness */
-    if (*size_rows <= CHECK_POSITIVITY || *size_rows > MAX_SIZE ||
-        *size_cols <= CHECK_POSITIVITY || *size_cols > MAX_SIZE)
+    if (*size_rows <= CHECK_POSITIVITY || *size_rows > MAX_SIZE || *size_cols <= CHECK_POSITIVITY || *size_cols > MAX_SIZE)
     {
         printf("Logical error");
         return LOGICAL_ERROR;
     }
 
-    return SUCCESS;
-}
-
-/**
- * @brief matrix input
- * 
- * @param arr - matrix to fill
- * @param rows - rows count
- * @param cols - columns count
- * 
- * @return int
- * INPUT_ERROR - input error return code
- * SUCCESS - success return code
- */
-int input_matrix(int arr[], size_t rows, size_t cols)
-{
-    printf("Enter the matrix elements: ");
-
-    for (size_t i = 0; i < rows * cols; i++)
-    {
-        if (scanf("%d", &arr[i]) != 1)
-        {
-            printf("Incorrect input");
-            return INPUT_ERROR;
-        }
-    }
-    
     return SUCCESS;
 }
 

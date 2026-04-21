@@ -5,6 +5,6 @@
 #include <stdio.h>
 #include "const.h"
 
-void make_matrix(int matrix[MAX_SIZE][MAX_SIZE], int arr[], int rows, int cols);
+void make_matrix(int matrix[MAX_SIZE][MAX_SIZE], int rows, int cols);
 
 #endif

@@ -2,7 +2,7 @@
  * @file main.c
  * @author Balyabin Yaroslav (balyabinyav@student.bmstu.ru)
  * @brief Lab 03 03 01
- * @version 0.1
+ * @version 0.2
  * @date 2026-04-19
  * 
  * @copyright Copyright (c) 2026
@@ -14,7 +14,7 @@
 #include "functions.h"
 
 /**
- * @brief entering a matrix and sorting by minimum value in a row
+ * @brief entering a matrix and sorting by maximum value in a row
  * 
  * @return int
  * SUCCESS - success return code

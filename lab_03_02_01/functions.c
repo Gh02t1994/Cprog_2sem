@@ -35,7 +35,7 @@ int sum_digit(int numb)
  * 
  * @return void
  */
-void search_min(int matrix [MAX_SIZE][MAX_SIZE],size_t rows, size_t cols, size_t *row_pos, size_t *col_pos)
+void search_min(int matrix [MAX_SIZE][MAX_SIZE], size_t rows, size_t cols, size_t *row_pos, size_t *col_pos)
 {
     int minim = sum_digit(matrix[ZERO_INDEX][ZERO_INDEX]);
     int current;
