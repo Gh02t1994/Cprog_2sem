@@ -104,25 +104,13 @@ void make_matrix(int matrix[MAX_SIZE][MAX_SIZE], int rows, int cols)
     int left = ZERO_INDEX, right = cols - 1;
     int number = ZERO_INDEX + 1;
 
-    while (top <= bottom && left <= right)
+    while (number <= rows * cols)
     {
         up_row(matrix, &number, &top, left, right);
-        if (top > bottom)
-        {
-            break;
-        }
 
         right_col(matrix, &number, top, bottom, &right);
-        if (left > right)
-        {
-            break;
-        }
 
         down_row(matrix, &number, top, &bottom, left, right);
-        if (top > bottom)
-        {
-            break;
-        }
 
         left_col(matrix, &number, top, bottom, &left, right);
     }
