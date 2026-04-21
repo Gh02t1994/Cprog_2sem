@@ -24,7 +24,7 @@ int input_size(size_t *size_rows, size_t *size_cols)
     }
 
     /** validation for logical correctness */
-    if (*size_rows <= CHECK_POSITIVITY || *size_rows > MAX_SIZE || *size_cols <= CHECK_POSITIVITY || *size_cols > MAX_SIZE)
+    if (*size_rows <= CHECK_POSITIVITY + 1 || *size_rows > MAX_SIZE || *size_cols <= CHECK_POSITIVITY + 1 || *size_cols > MAX_SIZE)
     {
         printf("Logical error");
         return LOGICAL_ERROR;

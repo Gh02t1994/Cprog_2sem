@@ -110,13 +110,11 @@ void del_row_col(int matrix[MAX_SIZE][MAX_SIZE], size_t *rows, size_t *cols, siz
     {
         shift_row(matrix, row, *cols, col_pos);
     }
+    (*rows)--;
 
     for (size_t col = 0; col < *cols; col++)
     {
         shift_col(matrix, *rows, col, row_pos);
     }
-
-    /** reducing the size */
-    (*rows)--;
     (*cols)--;
 }
