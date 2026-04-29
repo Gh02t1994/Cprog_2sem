@@ -5,23 +5,22 @@
 /**
  * @brief symmetric row swapping
  * 
- * @param matrix - matrix for rows to swap
- * @param row - index of the first row
+ * @param row_1 - the first row to swap
+ * @param row_2 - the second row to swap
  * @param column - starting column index for swapping
- * @param rows - number of rows
  * @param cols - number of columns
  * 
  * @return void
  */
-void change_rows(int matrix[MAX_SIZE][MAX_SIZE], size_t row, size_t column, size_t rows, size_t cols)
+void change_rows(int row_1[], int row_2[], size_t column, size_t cols)
 {
     int temp;
 
     for (size_t col = column; col <= cols - column - 1; col++)
     {
-        temp = matrix[row][col];
-        matrix[row][col] = matrix[rows - row - 1][col];
-        matrix[rows - row - 1][col] = temp;
+        temp = row_1[col];
+        row_1[col] = row_2[col];
+        row_2[col] = temp;
     }
 }
 
@@ -40,7 +39,7 @@ void switch_rows(int matrix[MAX_SIZE][MAX_SIZE], size_t rows, size_t cols)
 
     for (size_t row = 0; row <= rows / 2; row++)
     {
-        change_rows(matrix, row, col, rows, cols);
+        change_rows(matrix[row], matrix[rows - row - 1], col, cols);
         col++;
     }
 }

@@ -43,7 +43,7 @@ size_t take_arr(int matrix[MAX_SIZE][MAX_SIZE], int arr[], size_t rows, size_t c
     {
         for (size_t col = 0; col < cols; col++)
         {
-            if (sum_digit(matrix[row][col]) > 10)
+            if (sum_digit(matrix[row][col]) > TEN)
             {
                 arr[index] = matrix[row][col];
                 index++;
@@ -110,7 +110,7 @@ int modify_matrix(int matrix[MAX_SIZE][MAX_SIZE], size_t rows, size_t cols)
     {
         for (size_t col = 0; col < cols; col++)
         {
-            if (sum_digit(matrix[row][col]) > 10)
+            if (sum_digit(matrix[row][col]) > TEN)
             {
                 matrix[row][col] = arr[index];
                 index++;

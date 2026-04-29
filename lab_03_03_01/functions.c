@@ -4,22 +4,21 @@
 /**
  * @brief finds the maximum element in a row
  * 
- * @param matrix - input matrix
- * @param row - index of the row to search
+ * @param row - row to search
  * @param cols - number of columns
  * 
  * @return int
  * maxim - maximum value in the row
  */
-int search_max(int matrix[MAX_SIZE][MAX_SIZE], size_t row, size_t cols)
+int search_max(int row[], size_t cols)
 {
-    int maxim = matrix[row][ZERO_INDEX];
+    int maxim = row[ZERO_INDEX];
 
     for (size_t col = ZERO_INDEX + 1; col < cols; col++)
     {
-        if (matrix[row][col] > maxim)
+        if (row[col] > maxim)
         {
-            maxim = matrix[row][col];
+            maxim = row[col];
         }
     }
 
@@ -29,22 +28,21 @@ int search_max(int matrix[MAX_SIZE][MAX_SIZE], size_t row, size_t cols)
 /**
  * @brief swaps two rows in the matrix
  * 
- * @param matrix - matrix for rows to swap
- * @param row_1 - index of the first row
- * @param row_2 - index of the second row
+ * @param row_1 - the first row to swap
+ * @param row_2 - the second row to swap
  * @param cols - number of columns
  * 
  * @return void
  */
-void change_rows(int matrix[MAX_SIZE][MAX_SIZE], size_t row_1, size_t row_2, size_t cols)
+void change_rows(int row_1[], int row_2[], size_t cols)
 {
     int temp;
 
     for (size_t col = 0; col < cols; col++)
     {
-        temp = matrix[row_1][col];
-        matrix[row_1][col] = matrix[row_2][col];
-        matrix[row_2][col] = temp;
+        temp = row_1[col];
+        row_1[col] = row_2[col];
+        row_2[col] = temp;
     }
 }
 
@@ -63,9 +61,9 @@ void sort_matrix(int matrix[MAX_SIZE][MAX_SIZE], size_t rows, size_t cols)
     {
         for (size_t row_j = row_i; row_j < rows; row_j++)
         {
-            if (search_max(matrix, row_i, cols) < search_max(matrix, row_j, cols))
+            if (search_max(matrix[row_i], cols) < search_max(matrix[row_j], cols))
             {
-                change_rows(matrix, row_i, row_j, cols);
+                change_rows(matrix[row_i], matrix[row_j], cols);
             }
         }
     }

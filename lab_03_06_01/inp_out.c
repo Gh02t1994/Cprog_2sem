@@ -51,7 +51,7 @@ void output_matrix(int matrix[MAX_SIZE][MAX_SIZE], size_t rows, size_t cols)
         printf("\n");
         for (size_t col = 0; col < cols; col++)
         {
-            printf("%d ", matrix[row][col]);
+            printf("%5d ", matrix[row][col]);
         }
     }
 }
