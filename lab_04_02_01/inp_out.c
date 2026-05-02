@@ -2,32 +2,6 @@
 #include "inp_out.h"
 
 /**
- * @brief reads and validates the number of strings from input
- * 
- * @param count_str - pointer to store the input count value
- * 
- * @return int
- * INPUT_ERROR - input error return code
- * LOGICAL_ERROR - logical error return code
- * SUCCESS - success return code
- */
-int input_count_str(int *count_str)
-{
-    if (scanf("%d", count_str) != 1)
-    {
-        return INPUT_ERROR;
-    }
-
-    if (*count_str != COUNT_STRINGS)
-    {
-        return LOGICAL_ERROR;
-    }
-
-    getchar();
-    return SUCCESS;
-}
-
-/**
  * @brief reads a string from standard input
  * 
  * @param str - character array to store the input string
@@ -44,11 +18,20 @@ int input_str(char str[])
         return INPUT_ERROR;
     }
 
-    char last_char = getchar();
+    size_t lenght = strlen(str);
 
-    if (last_char != EOF)
+    if (lenght > 0 && str[lenght - 1] == '\n')
     {
-        return LOGICAL_ERROR;
+        str[lenght - 1] = '\0';
+    }
+    else
+    {
+        char last_char = getchar();
+
+        if (last_char != EOF)
+        {
+            return LOGICAL_ERROR;
+        }
     }
 
     return SUCCESS;

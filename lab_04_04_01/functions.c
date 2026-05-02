@@ -78,9 +78,19 @@ void while_dig(char str[], size_t *i)
  * 
  * @return void
  */
-void first_is_digit(char str[], size_t *i, int *was_digit)
+int first_is_digit(char str[], size_t *i, int *was_digit)
 {
     *was_digit = TRUE;
+
+    if (str[*i] == '0')
+    {
+        (*i)++;
+
+        if (my_isdigit(str[*i]))
+        {
+            return FALSE;
+        }
+    }
 
     while_dig(str, i);
 
@@ -89,6 +99,8 @@ void first_is_digit(char str[], size_t *i, int *was_digit)
         (*i)++;
         while_dig(str, i);
     }
+
+    return TRUE;
 }
 
 /**
@@ -167,7 +179,10 @@ int is_float(char str[])
 
     if (my_isdigit(str[i]))
     {
-        first_is_digit(str, &i, &was_digit);
+        if (first_is_digit(str, &i, &was_digit) == FALSE)
+        {
+            return FALSE;
+        }
     }
     else if (str[i] == '.')
     {

@@ -3,6 +3,7 @@
 #define INP_OUT_H
 
 #include <stdio.h>
+#include <string.h>
 #include "const.h"
 #include "codes.h"
 

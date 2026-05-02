@@ -23,7 +23,6 @@ void sort_words(char words[MAX_COUNT_WORDS][MAX_LENGHT_WORD], size_t size)
                 strcpy(words[i], words[j]);
                 strcpy(words[j], temp);
             }
-
         }
     }
 }

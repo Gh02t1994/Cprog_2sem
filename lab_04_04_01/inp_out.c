@@ -15,7 +15,7 @@ int input_str(char str[])
 {
     fgets(str, MAX_SIZE, stdin);
 
-    size_t lenght =  strlen(str);
+    size_t lenght = strlen(str);
 
     if (lenght > 0 && str[lenght - 1] == '\n')
     {

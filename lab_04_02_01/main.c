@@ -27,21 +27,14 @@ int main(void)
 {
     char str[MAX_SIZE], words[MAX_COUNT_WORDS][MAX_LENGHT_WORD];
     size_t numb_word = ZERO_INDEX;
-    int count_str, count_words;
+    int count_words;
     int rc_inp;
 
-    rc_inp = input_count_str(&count_str);
+    rc_inp = input_str(str);
     if (rc_inp != SUCCESS)
         return rc_inp;
 
-    for (int num_str = 0; num_str < count_str; num_str++)
-    {
-        rc_inp = input_str(str);
-        if (rc_inp != SUCCESS)
-            return rc_inp;
-
-        split_str(str, words, &numb_word, &count_words);
-    }
+    split_str(str, words, &numb_word, &count_words);
 
     if (count_words == 0)
         return LOGICAL_ERROR;
