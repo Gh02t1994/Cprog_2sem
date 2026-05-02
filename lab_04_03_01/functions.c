@@ -99,6 +99,8 @@ int split_str(char str[], char words[][MAX_LENGHT_WORD], int *count_words)
  */
 void make_new_str(char new_str[], char words[][MAX_LENGHT_WORD], int count_words)
 {
+    new_str[0] = '\0';
+    
     for (int w = count_words - 1; w >= 0; w--)
     {
         del_dupl_chr(words[w]);

@@ -18,20 +18,11 @@ int input_str(char str[])
         return INPUT_ERROR;
     }
 
-    size_t lenght = strlen(str);
+    char last_char = getchar();
 
-    if (lenght > 0 && str[lenght - 1] == '\n')
+    if (last_char != EOF)
     {
-        str[lenght - 1] = '\0';
-    }
-    else
-    {
-        char last_char = getchar();
-
-        if (last_char != EOF)
-        {
-            return LOGICAL_ERROR;
-        }
+        return LOGICAL_ERROR;
     }
 
     return SUCCESS;

@@ -10,31 +10,26 @@
  * @return char* 
  * &str[min_ind] - pointer to first matching character in str, or NULL if not found
  */
-char* my_strpbrk(char str[], char sym[])
+char *my_strpbrk(char str[], char sym[])
 {
-    size_t min_ind = MAX_SIZE;
-    size_t ind_str, ind_sym = 0;
+    size_t ind_sym, ind_str = 0;
 
-    while (sym[ind_sym] != END)
+    while (str[ind_str] != END)
     {
-        ind_str = ZERO_INDEX;
-        while (str[ind_str] != END)
+        ind_sym = ZERO_INDEX;
+        
+        while (sym[ind_sym] != END)
         {
-            if (ind_str < min_ind && str[ind_str++] == sym[ind_sym])
+            if (str[ind_str] == sym[ind_sym])
             {
-                min_ind = ind_str - 1;
-                break;
+                return &str[ind_str];
             }
+            ind_sym++;
         }
-        ind_sym++;
+        ind_str++;
     }
     
-    if (min_ind == MAX_SIZE)
-    {
-        return NULL;
-    }
-
-    return &str[min_ind];
+    return NULL;
 }
 
 /**
@@ -116,25 +111,25 @@ size_t my_strcspn(char str[], char sym[])
  * @return char*
  * &str[ind_start] - pointer to first occurrence of sym in str, or NULL if not found
  */
-char* my_strchr(char str[], char sym)
+char *my_strchr(char str[], char sym)
 {
-    size_t ind_str = ZERO_INDEX, ind_start = MAX_SIZE;
+    size_t ind_str = ZERO_INDEX;
 
     while (str[ind_str] != END)
     {
-        if (str[ind_str++] == sym)
+        if (str[ind_str] == sym)
         {
-            ind_start = ind_str - 1;
-            break;
+            return &str[ind_str];
         }
+        ind_str++;
     }
-
-    if (ind_start == MAX_SIZE)
+    
+    if (str[ind_str] == sym)
     {
-        return NULL;
+        return &str[ind_str];
     }
 
-    return &str[ind_start];
+    return NULL;
 }
 
 /**
@@ -146,7 +141,7 @@ char* my_strchr(char str[], char sym)
  * @return char*
  * &str[ind_start] - pointer to last occurrence of sym in str, or NULL if not found
  */
-char* my_strrchr(char str[], char sym)
+char *my_strrchr(char str[], char sym)
 {
     size_t ind_str = ZERO_INDEX, ind_start = MAX_SIZE;
 
@@ -156,6 +151,11 @@ char* my_strrchr(char str[], char sym)
         {
             ind_start = ind_str - 1;
         }
+    }
+
+    if (str[ind_str] == sym)
+    {
+        ind_start = ind_str;
     }
 
     if (ind_start == MAX_SIZE)
