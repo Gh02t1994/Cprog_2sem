@@ -34,7 +34,10 @@ int main(void)
     if (rc_inp != SUCCESS)
         return rc_inp;
 
-    split_str(str, words, &numb_word, &count_words);
+    if (split_str(str, words, &numb_word, &count_words) != SUCCESS)
+    {
+        return LOGICAL_ERROR;
+    }
 
     if (count_words == 0)
         return LOGICAL_ERROR;

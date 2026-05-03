@@ -27,7 +27,7 @@ int del_space(char str[])
     size_t start = ZERO_INDEX, end;
 
     str[strcspn(str, "\n")] = END;
-    while (str[start] == ' ')
+    while (isspace((unsigned char)str[start]))
     {
         start++;
     }
@@ -44,7 +44,7 @@ int del_space(char str[])
     str[i] = END;
 
     end = strlen(str);
-    while (end > ZERO_INDEX && str[end - 1] == ' ')
+    while (end > ZERO_INDEX && isspace((unsigned char)str[end - 1]))
     {
         end--;
     }

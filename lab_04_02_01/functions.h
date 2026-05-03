@@ -11,6 +11,6 @@ void sort_words(char words[MAX_COUNT_WORDS][MAX_LENGHT_WORD], size_t size);
 
 size_t del_duplicates(char words[MAX_COUNT_WORDS][MAX_LENGHT_WORD], size_t size);
 
-void split_str(char str[], char words[][MAX_LENGHT_WORD], size_t *numb_word, int *count_words);
+int split_str(char str[], char words[][MAX_LENGHT_WORD], size_t *numb_word, int *count_words);
 
 #endif

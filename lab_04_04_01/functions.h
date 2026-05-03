@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include "const.h"
 #include "codes.h"
 

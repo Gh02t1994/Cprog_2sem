@@ -90,7 +90,7 @@ int is_not_sep(char symbol)
  * 
  * @return void
  */
-void split_str(char str[], char words[][MAX_LENGHT_WORD], size_t *numb_word, int *count_words)
+int split_str(char str[], char words[][MAX_LENGHT_WORD], size_t *numb_word, int *count_words)
 {
     size_t pos = ZERO_INDEX, ind_char = ZERO_INDEX;
 
@@ -98,6 +98,9 @@ void split_str(char str[], char words[][MAX_LENGHT_WORD], size_t *numb_word, int
     {
         if (is_not_sep(str[pos]))
         {
+            if (ind_char >= MAX_LENGHT_WORD - 1)
+                return LOGICAL_ERROR;
+
             words[*numb_word][ind_char++] = str[pos];
         }
         else
@@ -120,4 +123,5 @@ void split_str(char str[], char words[][MAX_LENGHT_WORD], size_t *numb_word, int
     {
         *count_words = *numb_word;
     }
+    return SUCCESS;
 }
