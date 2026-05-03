@@ -42,13 +42,12 @@ int main(void)
         return rc;
     }
 
-    count_words = del_like_last(words, words[count_words - 1], count_words);
-    if (count_words == ZERO)
+    make_new_str(new_str, words, count_words);
+
+    if (strlen(new_str) == ZERO)
     {
         return LOGICAL_ERROR;
     }
-
-    make_new_str(new_str, words, count_words);
 
     output_str(new_str);
 
