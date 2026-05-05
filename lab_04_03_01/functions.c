@@ -99,7 +99,7 @@ int split_str(char str[], char words[][MAX_LENGHT_WORD], int *count_words)
  */
 void make_new_str(char new_str[], char words[][MAX_LENGHT_WORD], int count_words)
 {
-    new_str[0] = '\0';
+    new_str[0] = END;
     
     for (int w = count_words - 2; w >= 0; w--)
     {
