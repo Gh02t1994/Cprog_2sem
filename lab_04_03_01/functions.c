@@ -74,7 +74,7 @@ int split_str(char str[], char words[][MAX_LENGHT_WORD], int *count_words)
         {
             return LOGICAL_ERROR;
         }
-        
+
         strcpy(words[(*count_words)++], word);
         word = strtok(NULL, PUNC_MARKS);
     }
