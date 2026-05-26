@@ -219,7 +219,7 @@ int print_if_substr(char substr[], FILE *f)
  */
 int input_new_prod(product *p)
 {
-    char temp[MAX_NAME];
+    char temp[MAX_NAME], temp_numb[SIZE_BUFFER];
 
     if (fgets(temp, MAX_NAME, stdin) == NULL)
         return INCORRECT_INPUT;
@@ -231,16 +231,16 @@ int input_new_prod(product *p)
     del_trans(temp);
     strcpy(p->maker, temp);
 
-    if (!fgets(temp, SIZE_BUFFER, stdin))
+    if (!fgets(temp_numb, SIZE_BUFFER, stdin))
         return INCORRECT_INPUT;
-    del_trans(temp);
-    if (sscanf(temp, "%u", &p->price) != 1)
+    del_trans(temp_numb);
+    if (sscanf(temp_numb, "%u", &p->price) != 1)
         return INCORRECT_INPUT;
 
-    if (!fgets(temp, SIZE_BUFFER, stdin))
+    if (!fgets(temp_numb, SIZE_BUFFER, stdin))
         return INCORRECT_INPUT;
-    del_trans(temp);
-    if (sscanf(temp, "%u", &p->count) != 1)
+    del_trans(temp_numb);
+    if (sscanf(temp_numb, "%u", &p->count) != 1)
         return INCORRECT_INPUT;
 
     return SUCCESS;
@@ -377,7 +377,6 @@ int argc_3(char **argv)
             fclose(f);
             return rc;
         }
-        
     }
     return WRONG_ARGV;
 }

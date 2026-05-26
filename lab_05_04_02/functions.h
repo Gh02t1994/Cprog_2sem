@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <inttypes.h>
+#include <stdint.h>
 #include "const.h"
 #include "codes.h"
 

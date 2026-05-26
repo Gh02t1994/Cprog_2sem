@@ -71,7 +71,7 @@ void make_new_file(FILE *f, size_t count)
 int print_file(FILE *f)
 {
     size_t count = take_count(f);
-    int have_prev = FALSE;
+    int have_prev = FALSE, is_print = FALSE;
     int numb;
     int prev;
     if (count == ZERO)
@@ -83,10 +83,13 @@ int print_file(FILE *f)
             printf("%d ", prev);
         prev = numb;
         have_prev = TRUE;
+        is_print = TRUE;
     }
 
     if (have_prev)
         printf("%d", prev);
+    if (is_print == FALSE)
+        return INCORRECT_INPUT;
     return SUCCESS;
 }
 /**
@@ -149,6 +152,7 @@ int sort_file(FILE *f)
     size_t count = take_count(f);
     size_t min_index;
     int min_numb, cur_numb;
+    int rc_1, rc_2;
     if (count == ZERO)
         return EMPTY_FILE;
 
@@ -157,8 +161,11 @@ int sort_file(FILE *f)
         min_index = i;
         for (size_t j = i + 1; j < count; j++)
         {
-            get_number_by_pos(f, min_index, &min_numb);
-            get_number_by_pos(f, j, &cur_numb);
+            rc_1 = get_number_by_pos(f, min_index, &min_numb);
+            rc_2 = get_number_by_pos(f, j, &cur_numb);
+
+            if (rc_1 != SUCCESS || rc_2 != SUCCESS)
+                return INCORRECT_INPUT;
 
             if (cur_numb < min_numb)
                 min_index = j;

@@ -24,4 +24,6 @@ elif grep -q '^s ' "$args"; then
     $prog "export" "$bin" "pos_out.txt"
 fi
 
+rm "$bin"
+
 "$script_dir"/comparator.sh "pos_out.txt" "$expect"
