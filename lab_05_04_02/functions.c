@@ -47,7 +47,7 @@ int check_file(char str[])
  * INCORRECT_INPUT - read or parse error
  * SUCCESS - product read
  */
-int read_product(Product *p, FILE *f)
+int read_product(product *p, FILE *f)
 {
     char buf[SIZE_BUFFER];
 
@@ -83,7 +83,7 @@ int read_product(Product *p, FILE *f)
  * @return size_t
  * i - products count
  */
-size_t take_array_products(Product p[], FILE *f)
+size_t take_array_products(product p[], FILE *f)
 {
     int rc = SUCCESS;
     size_t i = ZERO;
@@ -111,7 +111,7 @@ size_t take_array_products(Product p[], FILE *f)
  *
  * @return void
  */
-void file_printf(Product p[], size_t count, FILE *f)
+void file_printf(product p[], size_t count, FILE *f)
 {
     for (size_t i = ZERO; i < count; i++)
     {
@@ -134,7 +134,7 @@ void file_printf(Product p[], size_t count, FILE *f)
  */
 int sort_arr_prod(FILE *f_src, FILE *f_dst)
 {
-    Product temp, p[MAX_PRODUCTS];
+    product temp, p[MAX_PRODUCTS];
     size_t count = take_array_products(p, f_src);
 
     if (count == ZERO)
@@ -188,7 +188,7 @@ int is_substr(char str[], char substr[])
  */
 int print_if_substr(char substr[], FILE *f)
 {
-    Product p[MAX_PRODUCTS];
+    product p[MAX_PRODUCTS];
     size_t count = take_array_products(p, f);
 
     if (count == ZERO)
@@ -217,7 +217,7 @@ int print_if_substr(char substr[], FILE *f)
  * INCORRECT_INPUT - wrong format
  * SUCCESS - product read
  */
-int input_new_prod(Product *p)
+int input_new_prod(product *p)
 {
     char temp[MAX_NAME];
 
@@ -255,7 +255,7 @@ int input_new_prod(Product *p)
  *
  * @return void
  */
-void shift_arr(Product p[], size_t count, size_t pos)
+void shift_arr(product p[], size_t count, size_t pos)
 {
     for (size_t i = count; i > pos; i--)
     {
@@ -275,7 +275,7 @@ void shift_arr(Product p[], size_t count, size_t pos)
  */
 int add_new_pr_in_arr(FILE *f)
 {
-    Product p_new, p[MAX_PRODUCTS];
+    product p_new, p[MAX_PRODUCTS];
     size_t count = take_array_products(p, f);
     size_t pos = count;
     int rc;

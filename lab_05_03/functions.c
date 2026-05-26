@@ -155,7 +155,7 @@ int sort_file(FILE *f)
     for (size_t i = ZERO; i < count; i++)
     {
         min_index = i;
-        for(size_t j = i + 1; j < count; j++)
+        for (size_t j = i + 1; j < count; j++)
         {
             get_number_by_pos(f, min_index, &min_numb);
             get_number_by_pos(f, j, &cur_numb);

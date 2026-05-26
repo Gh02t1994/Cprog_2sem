@@ -14,11 +14,11 @@ typedef struct
     char maker[MAX_MAKER];
     uint32_t price;
     uint32_t count;
-} Product;
+} product;
 
 int check_file(char str[]);
 
-size_t take_array_products(Product p[], FILE *f);
+size_t take_array_products(product p[], FILE *f);
 
 int sort_arr_prod(FILE *f_src, FILE *f_dst);
 
