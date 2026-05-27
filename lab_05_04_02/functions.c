@@ -313,7 +313,8 @@ int add_new_pr_in_arr(FILE *f)
     shift_arr(p, count, pos);
     p[pos] = p_new;
     count++;
-
+    
+    rewind(f);              
     file_printf(p, count, f);
     return SUCCESS;
 }
@@ -337,7 +338,7 @@ int argc_4(char **argv)
         if (check_file(argv[2]) != SUCCESS)
             return FILE_NOT_EXIST;
         FILE *f_1 = fopen(argv[2], "r");
-        FILE *f_2 = fopen(argv[3], "wb");
+        FILE *f_2 = fopen(argv[3], "w");
         
         rc = sort_arr_prod(f_1, f_2);
         fclose(f_1);
@@ -384,15 +385,13 @@ int argc_3(char **argv)
         if (check_file(argv[2]) != SUCCESS)
             return FILE_NOT_EXIST;
 
-        FILE *f = fopen(argv[2], "rb+");
+        FILE *f = fopen(argv[2], "r+");
 
         rc = add_new_pr_in_arr(f);
+        fclose(f);
 
         if (rc != SUCCESS)
-        {
-            fclose(f);
             return rc;
-        }
     }
     else
         return WRONG_ARGV;
