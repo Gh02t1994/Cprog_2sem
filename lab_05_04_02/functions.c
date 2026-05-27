@@ -5,9 +5,11 @@
  *
  * @param str - target string
  *
- * @return void
+ * @return int
+ * OVERFLOW_ERROR - overflow error return code
+ * SUCCESS - success return
  */
-void del_trans(char str[])
+int del_trans(char str[])
 {
     size_t len = strlen(str);
 
@@ -15,6 +17,10 @@ void del_trans(char str[])
     {
         str[len - 1] = '\0';
     }
+    else if (len == 0)
+        return OVERFLOW_ERROR;
+    
+    return SUCCESS;
 }
 
 /**
@@ -53,21 +59,25 @@ int read_product(product *p, FILE *f)
 
     if (!fgets(p->name, MAX_NAME, f))
         return INCORRECT_INPUT;
-    del_trans(p->name);
+    if (del_trans(p->name) != SUCCESS)
+        return OVERFLOW_ERROR;
 
     if (!fgets(p->maker, MAX_MAKER, f))
         return INCORRECT_INPUT;
-    del_trans(p->maker);
+    if (del_trans(p->maker) != SUCCESS)
+        return OVERFLOW_ERROR;
 
     if (!fgets(buf, SIZE_BUFFER, f))
         return INCORRECT_INPUT;
-    del_trans(buf);
+    if (del_trans(buf) != SUCCESS)
+        return OVERFLOW_ERROR;
     if (sscanf(buf, "%u", &p->price) != 1)
         return INCORRECT_INPUT;
 
     if (!fgets(buf, SIZE_BUFFER, f))
         return INCORRECT_INPUT;
-    del_trans(buf);
+    if (del_trans(buf) != SUCCESS)
+        return OVERFLOW_ERROR;
     if (sscanf(buf, "%u", &p->count) != 1)
         return INCORRECT_INPUT;
     
@@ -223,23 +233,27 @@ int input_new_prod(product *p)
 
     if (fgets(temp, MAX_NAME, stdin) == NULL)
         return INCORRECT_INPUT;
-    del_trans(temp);
+    if (del_trans(temp) != SUCCESS)
+        return OVERFLOW_ERROR;
     strcpy(p->name, temp);
 
     if (fgets(temp, MAX_NAME, stdin) == NULL)
         return INCORRECT_INPUT;
-    del_trans(temp);
+    if (del_trans(temp) != SUCCESS)
+        return OVERFLOW_ERROR;
     strcpy(p->maker, temp);
 
     if (!fgets(temp_numb, SIZE_BUFFER, stdin))
         return INCORRECT_INPUT;
-    del_trans(temp_numb);
+    if (del_trans(temp_numb) != SUCCESS)
+        return OVERFLOW_ERROR;
     if (sscanf(temp_numb, "%u", &p->price) != 1)
         return INCORRECT_INPUT;
 
     if (!fgets(temp_numb, SIZE_BUFFER, stdin))
         return INCORRECT_INPUT;
-    del_trans(temp_numb);
+    if (del_trans(temp_numb) != SUCCESS)
+        return OVERFLOW_ERROR;
     if (sscanf(temp_numb, "%u", &p->count) != 1)
         return INCORRECT_INPUT;
 
@@ -343,8 +357,10 @@ int argc_4(char **argv)
         if (rc != SUCCESS)
             return rc;
     }
+    else
+        return WRONG_ARGV;
 
-    return WRONG_ARGV;
+    return SUCCESS;
 }
 
 /**
@@ -378,5 +394,8 @@ int argc_3(char **argv)
             return rc;
         }
     }
-    return WRONG_ARGV;
+    else
+        return WRONG_ARGV;
+
+    return SUCCESS;
 }

@@ -1,11 +1,17 @@
 #!/bin/bash
 
 script_dir=$(dirname "$(realpath "$0")")
-prog=$(realpath "$script_dir/../../app.exe")
+dir=$(realpath "$script_dir/../..")
+cd "$dir" || exit
 
-in_file="$1"
-file_out="$(realpath "$script_dir/../data")/$2"
+prog="./app.exe"
 
-$prog "$in_file" > "pos_out.txt"
+expect="./func_tests/data/$1"
+args="$2"
 
-"$script_dir"/comparator.sh "pos_out.txt" "$file_out"
+argv=$(cat "$args")
+if ! $prog $argv > "pos_out.txt"; then
+    exit 1
+fi
+
+"$script_dir"/comparator.sh "pos_out.txt" "$expect"

@@ -11,18 +11,19 @@ pos_passed=0
 pos_failed=0
 pos_all=$(find "$data_dir" -name "pos_*_in.txt" | grep -c .)
 
-all_files=$(find "$data_dir" -name "pos_*_in.txt" | sort)
+all_args=$(find "$data_dir" -name "pos_*_args.txt" | sort)
 
 echo -e "\n${GREEN}POSITIVE TESTS${NC}"
-for file in $all_files; do
-    file_name=$(basename "$file")
+for args in $all_args; do
+    file_name=$(basename "$args")
     out_file="pos_${file_name//[^0-9]/}_out.txt"
-    if "$path_dir"/pos_case.sh "$file" "$out_file"; then
-    echo -e "File $file_name ${GREEN}PASSED${NC}"
-    ((pos_passed++))
+
+    if "$path_dir"/pos_case.sh "$out_file" "$args"; then
+        echo -e "File $file_name ${GREEN}PASSED${NC}"
+        ((pos_passed++))
     else
-    echo -e "File $file_name ${RED}FAILED${NC}"
-    ((pos_failed++))
+        echo -e "File $file_name ${RED}FAILED${NC}"
+        ((pos_failed++))
     fi
 done
 
@@ -32,16 +33,20 @@ neg_passed=0
 neg_failed=0
 neg_all=$(find "$data_dir" -name "neg_*_in.txt" | grep -c .)
 
-all_files=$(find "$data_dir" -name "neg_*_in.txt" | sort)
+all_args=$(find "$data_dir" -name "neg_*_args.txt" | sort)
 
 echo -e "\n${RED}NEGATIVE TESTS${NC}"
-for file in $all_files; do
-    if "$path_dir"/neg_case.sh "$file"; then
-    echo -e "File $(basename "$file") ${GREEN}PASSED${NC}"
-    ((neg_passed++))
+for args in $all_args; do
+    file_name=$(basename "$args")
+    
+    file="neg_${file_name//[^0-9]/}_in.txt"
+
+    if "$path_dir"/neg_case.sh "$args"; then
+        echo -e "File $(basename "$file") ${GREEN}PASSED${NC}"
+        ((neg_passed++))
     else
-    echo -e "File $(basename "$file") ${RED}FAILED${NC}"
-    ((neg_failed++))
+        echo -e "File $(basename "$file") ${RED}FAILED${NC}"
+        ((neg_failed++))
     fi
 done
 

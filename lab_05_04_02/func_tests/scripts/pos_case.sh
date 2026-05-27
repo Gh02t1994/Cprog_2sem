@@ -15,13 +15,20 @@ stdin="./func_tests/data/pos_${stream_in//[^0-9]/}_in.txt"
 argv=$(cat "$args")
 
 if grep -q '^st ' "$args"; then
-    $prog $argv
+    if ! $prog $argv > /dev/null 2>&1; then
+        exit 1
+    fi
 elif grep -q '^ft ' "$args"; then
-    $prog $argv > "pos_out.txt"
+    if ! $prog $argv > "pos_out.txt"; then
+        exit 1
+    fi
 elif grep -q '^at ' "$args"; then
     touch "$new_in_file"
     cat "$stream_in" > "$new_in_file"
-    $prog $argv < "$stdin"
+    
+    if ! $prog $argv < "$stdin" > /dev/null 2>&1; then
+        exit 1
+    fi
 fi
 
 if grep -q '^at ' "$args"; then
