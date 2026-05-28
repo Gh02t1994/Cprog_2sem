@@ -125,10 +125,20 @@ void file_printf(product p[], size_t count, FILE *f)
 {
     for (size_t i = ZERO; i < count; i++)
     {
-        fprintf(f, "%s\n", p[i].name);
-        fprintf(f, "%s\n", p[i].maker);
-        fprintf(f, "%u\n", p[i].price);
-        fprintf(f, "%u\n", p[i].count);
+        if (i == count - 1)
+        {
+            fprintf(f, "%s\n", p[i].name);
+            fprintf(f, "%s\n", p[i].maker);
+            fprintf(f, "%u\n", p[i].price);
+            fprintf(f, "%u", p[i].count);
+        }
+        else
+        {
+            fprintf(f, "%s\n", p[i].name);
+            fprintf(f, "%s\n", p[i].maker);
+            fprintf(f, "%u\n", p[i].price);
+            fprintf(f, "%u\n", p[i].count);
+        }
     }
 }
 
