@@ -1,0 +1,163 @@
+/**
+ * @file main.c
+ * @author Balyabin Yaroslav (balyabinyav@student.bmstu.ru)
+ * @brief Lab 02 03 01
+ * @version 0.2
+ * @date 2026-03-23
+ * 
+ * @copyright Copyright (c) 2026
+ * 
+ */
+
+#include <stdio.h>
+
+#define MAX_SIZE 20 /**< maximum array size */
+#define CHECK_POS 0 /**< the number to check for positivity */
+#define FIB_0 0 /**< the zero fibonacci number */
+#define FIB_1 1 /**< the first fibonacci number */
+#define SUCCESS 0 /**< success return code */
+#define INP_ERR 1 /**< input error return code */
+#define LOGIC_ERR 2 /**< logical error return code */
+
+/**
+ * @brief array input
+ * 
+ * @param arr - array to fill
+ * @param size - array size
+ * 
+ * @return int
+ * INP_ERR - input error return code
+ * SUCCESS - success return code
+ */
+int input_arr(int arr[], size_t size)
+{
+    for (size_t i = 0; i < size; i++)
+    {
+        /** validation for input correctness */
+        if (scanf("%d", &arr[i]) != 1)
+        {
+            printf("Incorrect input");
+            return INP_ERR;
+        }
+    }
+    
+    return SUCCESS;
+}
+
+/**
+ * @brief array output
+ * 
+ * @param arr - array to print
+ * @param size - array size
+ * 
+ * @return void
+ */
+void output_arr(int arr[], size_t size)
+{
+    for (size_t i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+}
+
+/**
+ * @brief inserting a number in array
+ * 
+ * @param arr - array for inserting
+ * @param size - array size
+ * @param pos - index of position to insert
+ * @param numb - number to insert
+ * 
+ * @return size_t
+ * size + 1 - new size of array
+ */
+int insert_in_arr(int arr[], size_t size, size_t pos, int numb)
+{
+    for (size_t i = size - 1; i >= pos; i--)
+    {
+        arr[i + 1] = arr[i];
+    }
+
+    arr[pos] = numb;
+
+    return size + 1;
+}
+
+/**
+ * @brief inserting a Fibonacci number in array after numbers multiples of 3
+ * 
+ * @param arr - array for inserting
+ * @param size - array size
+ * 
+ * @return size_t
+ * size - new size of array
+ */
+int insert_fib_in_arr(int arr[], size_t size)
+{
+    int fib_0 = FIB_0, fib_1 = FIB_1, fib_copy; /**< fibonacci numbers */
+    size_t i = CHECK_POS; /**< the number for the indexes */
+
+    while (i < size)
+    {
+        if (arr[i] % 3 == 0)
+        {
+            size = insert_in_arr(arr, size, i + 1, fib_0);
+
+            i += 2;
+
+            /** calculating next Fibonacci numbers */
+            fib_copy = fib_1;
+            fib_1 += fib_0;
+            fib_0 = fib_copy;
+        }
+        else
+        {
+            i++;
+        }
+    }
+
+    return size;
+}
+
+/**
+ * @brief entering an array and adding Fibonacci numbers to it after multiples of 3
+ * 
+ * @return int
+ * SUCCESS - success return code
+ * INP_ERR - input error return code
+ * LOGIC_ERR - logical error return code
+ */
+int main(void)
+{
+    int arr[MAX_SIZE]; /**< array */
+    size_t size_arr; /**< array size */
+
+    /** validation for input correctness */
+    printf("Enter array size up to 10: ");
+    if (scanf("%zu", &size_arr) != 1)
+    {
+        printf("Incorrect input");
+        return INP_ERR;
+    }
+
+    /** validation for logical correctness */
+    if (size_arr <= CHECK_POS || size_arr > MAX_SIZE)
+    {
+        printf("Logical error");
+        return LOGIC_ERR;
+    }
+
+    /** input array */
+    printf("Enter the array elements: ");
+    if (input_arr(arr, size_arr) == INP_ERR)
+    {
+        return INP_ERR;
+    }
+
+    size_arr = insert_fib_in_arr(arr, size_arr);
+
+    printf("Modified array with Fiboncci numbers: ");
+    output_arr(arr, size_arr);
+
+    return SUCCESS;
+}

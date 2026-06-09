@@ -1,0 +1,8 @@
+SpecialItem
+MakerA
+10
+1
+XSpecialItem
+MakerB
+20
+3

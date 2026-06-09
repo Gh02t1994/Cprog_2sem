@@ -1,0 +1,4 @@
+NewMinPrice
+MakerZ
+0
+10

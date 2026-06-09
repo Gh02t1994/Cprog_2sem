@@ -1,0 +1,4 @@
+NewMinQtyAt40
+MakerZ
+40
+1
